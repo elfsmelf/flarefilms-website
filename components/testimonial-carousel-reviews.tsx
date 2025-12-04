@@ -168,12 +168,18 @@ export const TestimonialCarousel = () => {
           {/* Center Section: Image */}
           <div className="w-full md:w-[40%] lg:w-[380px] flex-shrink-0 relative order-2 md:order-2 h-[400px] md:h-[500px] lg:h-[579px]">
             {/* Click zones for navigation over image */}
-            <div
-              className="absolute top-0 left-0 w-1/2 h-full z-20 cursor-pointer"
+            <button
+              type="button"
+              className="absolute top-0 left-0 w-1/2 h-full z-20 cursor-pointer bg-transparent border-none"
               onClick={prevSlide}
-              title="Previous"
+              aria-label="Previous testimonial"
             />
-            <div className="absolute top-0 right-0 w-1/2 h-full z-20 cursor-pointer" onClick={nextSlide} title="Next" />
+            <button
+              type="button"
+              className="absolute top-0 right-0 w-1/2 h-full z-20 cursor-pointer bg-transparent border-none"
+              onClick={nextSlide}
+              aria-label="Next testimonial"
+            />
 
             <AnimatePresence initial={false} custom={direction}>
               <motion.div

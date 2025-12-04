@@ -89,10 +89,11 @@ export function About() {
               <div className="relative aspect-[3/4] w-full overflow-hidden">
                 <Image
                   src="https://assets.guestsnapper.com/wedding-gallery-media/richard-photo-5.webp"
-                  alt="Richard Portrait"
+                  alt="Richard Paynter - Brisbane Wedding Videographer"
                   fill
                   className="object-cover"
                   loading="lazy"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
             </motion.div>

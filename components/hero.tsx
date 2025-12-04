@@ -9,7 +9,8 @@ export function Hero() {
         fill
         className="object-cover"
         priority
-        unoptimized
+        sizes="100vw"
+        quality={80}
       />
       <div className="absolute inset-0 bg-black/20" />
 

@@ -60,6 +60,11 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        {/* Preconnect to external image CDN for faster loading */}
+        <link rel="preconnect" href="https://assets.guestsnapper.com" />
+        <link rel="dns-prefetch" href="https://assets.guestsnapper.com" />
+      </head>
       <body
         className={`${ebGaramond.variable} ${cormorantGaramond.variable} ${questrial.variable} font-sans antialiased`}
       >
