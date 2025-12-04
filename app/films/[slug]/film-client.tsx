@@ -113,6 +113,7 @@ export function FilmClient({ film, recommendedFilms }: FilmClientProps) {
                         alt={film.venue.venueTitle}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
                       />
                     </div>
                   )}
@@ -125,6 +126,7 @@ export function FilmClient({ film, recommendedFilms }: FilmClientProps) {
                         alt={image.alt}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 1024px) 50vw, 25vw"
                       />
                       {/* Show "View More" overlay on last image if there are more */}
                       {index === 1 && film.venue?.gallery && film.venue.gallery.length > 2 && (
@@ -280,6 +282,8 @@ export function FilmClient({ film, recommendedFilms }: FilmClientProps) {
                     alt={photo.alt}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    loading="lazy"
                   />
                 </motion.div>
               ))}
@@ -316,6 +320,8 @@ export function FilmClient({ film, recommendedFilms }: FilmClientProps) {
                           alt={recommendedFilm.title}
                           fill
                           className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          loading="lazy"
                         />
                       </div>
                     </div>
