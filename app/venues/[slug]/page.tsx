@@ -3,12 +3,20 @@ import { Footer } from "@/components/footer"
 import { ImageCarousel } from "@/components/image-carousel"
 import { VenuePageClient } from "@/components/venue-page-client"
 import { VenueFilmsSection } from "@/components/venue-films-section"
-import { getVenueBySlug } from "@/lib/actions/venues"
+import { getVenueBySlug, getAllVenues } from "@/lib/actions/venues"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { generateOGMetadata, generateTwitterMetadata } from "@/lib/seo/metadata"
 import { generateVenueSchema, generateBreadcrumbSchema } from "@/lib/seo/schema"
 import { JsonLd } from "@/components/seo/JsonLd"
+
+// Generate static params for all published venues
+export async function generateStaticParams() {
+  const venues = await getAllVenues()
+  return venues.map((venue) => ({
+    slug: venue.slug,
+  }))
+}
 
 export async function generateMetadata({
   params,

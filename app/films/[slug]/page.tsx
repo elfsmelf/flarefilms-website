@@ -1,4 +1,4 @@
-import { getFilmBySlug, getRecommendedFilms } from "@/lib/films-data"
+import { getFilmBySlug, getRecommendedFilms, getAllFilms } from "@/lib/films-data"
 import { FilmClient } from "./film-client"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -8,6 +8,14 @@ import type { Metadata } from "next"
 import { generateOGMetadata, generateTwitterMetadata } from "@/lib/seo/metadata"
 import { generateVideoSchema, generateBreadcrumbSchema } from "@/lib/seo/schema"
 import { JsonLd } from "@/components/seo/JsonLd"
+
+// Generate static params for all published films
+export async function generateStaticParams() {
+  const films = await getAllFilms()
+  return films.map((film) => ({
+    slug: film.slug,
+  }))
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params

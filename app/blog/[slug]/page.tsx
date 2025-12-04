@@ -13,6 +13,16 @@ import { generateOGMetadata, generateTwitterMetadata } from "@/lib/seo/metadata"
 import { generateArticleSchema, generateBreadcrumbSchema } from "@/lib/seo/schema"
 import { JsonLd } from "@/components/seo/JsonLd"
 
+// Generate static params for all published blog posts
+export async function generateStaticParams() {
+  const posts = await getAllBlogPosts()
+  return posts
+    .filter((post) => post.published)
+    .map((post) => ({
+      slug: post.slug,
+    }))
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const post = await getBlogPostBySlug(slug)
