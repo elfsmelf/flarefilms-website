@@ -2,7 +2,7 @@
 
 import { uploadImageFromUrl } from './upload'
 
-const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY || 'AIzaSyBwsxISYBiEqMk4FpEOlCnnp4hRiHzMBkk'
+const GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY
 
 interface PlacePhoto {
   name: string
