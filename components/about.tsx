@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import { motion } from "framer-motion"
 
 const fadeInOnScroll = {
@@ -69,12 +70,12 @@ export function About() {
               </motion.div>
 
               <motion.div variants={fadeInOnScroll} className="mt-10">
-                <a
+                <Link
                   href="/testimonials"
                   className="inline-block bg-[#e7e4df] text-[#24221d] px-12 py-4 text-sm font-semibold uppercase tracking-[0.15em] hover:bg-white transition-colors duration-300 ease-out"
                 >
                   View Testimonials
-                </a>
+                </Link>
               </motion.div>
             </motion.div>
 

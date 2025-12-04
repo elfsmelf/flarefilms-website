@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -247,12 +248,12 @@ export function Testimonial() {
 
       {/* View All Testimonials Button */}
       <div className="text-center mt-12">
-        <a
+        <Link
           href="/testimonials"
           className="inline-block border border-[#b8a862] text-[#b8a862] px-10 py-4 text-sm font-sans uppercase tracking-[0.2em] transition-colors duration-300 hover:bg-[#b8a862] hover:text-[#24221d]"
         >
           View All Testimonials
-        </a>
+        </Link>
       </div>
     </section>
   )

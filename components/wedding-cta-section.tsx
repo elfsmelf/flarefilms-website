@@ -1,5 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 // Font import helper
 const GoogleFonts = () => (
@@ -122,38 +123,24 @@ export const WeddingCTASection = () => {
 
                 {/* Two CTA Buttons */}
                 <div className="flex flex-col gap-4 w-full">
-                  <motion.a
+                  <Link
                     href="/contact"
-                    whileHover={{
-                      scale: 1.02,
-                      backgroundColor: "rgba(184, 168, 98, 1)",
-                    }}
-                    whileTap={{
-                      scale: 0.98,
-                    }}
-                    className="w-full inline-flex items-center justify-center px-8 py-4 bg-[#b8a862] text-white text-[12px] font-normal uppercase tracking-[3px] transition-all duration-300 hover:bg-[#a89752] shadow-lg"
+                    className="w-full inline-flex items-center justify-center px-8 py-4 bg-[#b8a862] text-white text-[12px] font-normal uppercase tracking-[3px] transition-all duration-300 hover:bg-[#a89752] hover:scale-[1.02] active:scale-[0.98] shadow-lg"
                     style={{
                       fontFamily: '"Questrial", sans-serif',
                     }}
                   >
                     GET IN CONTACT
-                  </motion.a>
-                  <motion.a
+                  </Link>
+                  <Link
                     href="/films"
-                    whileHover={{
-                      scale: 1.02,
-                      backgroundColor: "rgba(255, 255, 255, 0.05)",
-                    }}
-                    whileTap={{
-                      scale: 0.98,
-                    }}
-                    className="w-full inline-flex items-center justify-center px-8 py-4 border-2 border-white/50 text-white text-[12px] font-normal uppercase tracking-[3px] transition-all duration-300 hover:border-white hover:bg-white/5"
+                    className="w-full inline-flex items-center justify-center px-8 py-4 border-2 border-white/50 text-white text-[12px] font-normal uppercase tracking-[3px] transition-all duration-300 hover:border-white hover:bg-white/5 hover:scale-[1.02] active:scale-[0.98]"
                     style={{
                       fontFamily: '"Questrial", sans-serif',
                     }}
                   >
                     VIEW WEDDINGS
-                  </motion.a>
+                  </Link>
                 </div>
               </div>
             </motion.div>

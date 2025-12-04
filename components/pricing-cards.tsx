@@ -1,5 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
+import Link from "next/link"
 const PRICING_TIERS = [
   {
     id: 1,
@@ -72,7 +73,7 @@ export const ServicePricingCards = () => {
         >
           {PRICING_TIERS.map((tier) => (
             <motion.div key={tier.id} className="flex flex-col items-center" variants={itemVariants}>
-              <a href="/pricing" className="w-full flex flex-col items-center no-underline">
+              <Link href="/pricing" className="w-full flex flex-col items-center no-underline">
                 {/* Image Container */}
                 <div className="w-full relative group cursor-pointer">
                   <div className="overflow-hidden w-full">
@@ -104,7 +105,7 @@ export const ServicePricingCards = () => {
                   {/* Spacer/Empty paragraph from original design */}
                   <div className="h-6" aria-hidden="true" />
                 </div>
-              </a>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
