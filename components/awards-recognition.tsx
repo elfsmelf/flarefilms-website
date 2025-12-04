@@ -68,7 +68,7 @@ export const AwardsRecognition = () => {
             }}
             transition={{
               duration: 0.6,
-              ease: "easeOut",
+              ease: "easeOut" as const,
             }}
             className="font-cormorant text-[36px] md:text-[53px] leading-tight md:leading-[47.8px] uppercase tracking-[3px] md:tracking-[5px] text-center text-gray-900 mb-8"
           >

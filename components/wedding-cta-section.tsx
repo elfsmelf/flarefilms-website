@@ -32,7 +32,7 @@ export const WeddingCTASection = () => {
           }}
           transition={{
             duration: 0.6,
-            ease: "easeOut",
+            ease: "easeOut" as const,
           }}
           className="w-full text-center mb-12 md:mb-[55px]"
         >
@@ -64,7 +64,7 @@ export const WeddingCTASection = () => {
               }}
               transition={{
                 duration: 0.8,
-                ease: "easeOut",
+                ease: "easeOut" as const,
                 delay: 0.2,
               }}
               className="w-full md:w-1/2 z-10"
@@ -93,7 +93,7 @@ export const WeddingCTASection = () => {
               }}
               transition={{
                 duration: 0.8,
-                ease: "easeOut",
+                ease: "easeOut" as const,
                 delay: 0.4,
               }}
               className="w-full md:w-1/2 md:mt-[109px] z-0"

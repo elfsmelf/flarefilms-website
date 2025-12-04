@@ -28,7 +28,7 @@ export function FilmVideoCard({ slug, title, location, tagline, image, index }: 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
+      transition={{ duration: 0.3, ease: "easeOut" as const }}
       className="w-full"
     >
       <Link href={`/films/${slug}`}>

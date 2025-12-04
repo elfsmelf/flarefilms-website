@@ -238,7 +238,7 @@ export function RichTextEditor({ content, onChange, disabled, placeholder }: Ric
                 type="button"
                 onClick={() => {
                   if (editor.isActive('orderedList')) {
-                    editor.chain().focus().toggleOrderedList().run().toggleBulletList().run()
+                    editor.chain().focus().toggleOrderedList().toggleBulletList().run()
                   } else {
                     editor.chain().focus().toggleBulletList().run()
                   }
@@ -255,7 +255,7 @@ export function RichTextEditor({ content, onChange, disabled, placeholder }: Ric
                 type="button"
                 onClick={() => {
                   if (editor.isActive('bulletList')) {
-                    editor.chain().focus().toggleBulletList().run().toggleOrderedList().run()
+                    editor.chain().focus().toggleBulletList().toggleOrderedList().run()
                   } else {
                     editor.chain().focus().toggleOrderedList().run()
                   }

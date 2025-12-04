@@ -30,6 +30,14 @@ interface PlaceDetailsResult {
 
 export async function fetchVenueImagesFromGooglePlaces(venueName: string, city?: string) {
   try {
+    // Check if API key is configured
+    if (!GOOGLE_PLACES_API_KEY) {
+      return {
+        success: false,
+        error: 'Google Places API is not configured. Please set GOOGLE_PLACES_API_KEY environment variable.',
+      }
+    }
+
     // Step 1: Search for the venue to get place_id
     const searchQuery = city ? `${venueName}, ${city}, Queensland, Australia` : `${venueName}, Queensland, Australia`
 

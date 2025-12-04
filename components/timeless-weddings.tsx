@@ -116,7 +116,7 @@ export function TimelessWeddings({
               }}
               transition={{
                 duration: 0.8,
-                ease: "easeOut",
+                ease: "easeOut" as const,
                 delay: 0.2,
               }}
               viewport={{
@@ -137,7 +137,7 @@ export function TimelessWeddings({
               }}
               transition={{
                 duration: 0.8,
-                ease: "easeOut",
+                ease: "easeOut" as const,
               }}
               viewport={{
                 once: true,
@@ -156,7 +156,7 @@ export function TimelessWeddings({
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+              transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.3 }}
               viewport={{ once: true }}
               className="relative z-10 mt-12 space-y-6"
             >
@@ -213,7 +213,7 @@ export function TimelessWeddings({
               <motion.h2
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+                transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.3 }}
                 viewport={{ once: true }}
                 className="mb-4 font-serif text-4xl font-light tracking-wide text-white sm:text-5xl lg:text-[48px] lg:leading-tight"
                 style={{ fontFamily: '"Times New Roman", Times, serif' }}
@@ -224,7 +224,7 @@ export function TimelessWeddings({
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+                transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.4 }}
                 viewport={{ once: true }}
                 className="mb-8 font-sans text-base md:text-lg leading-relaxed text-white/90"
               >
@@ -234,7 +234,7 @@ export function TimelessWeddings({
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+                transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.5 }}
                 viewport={{ once: true }}
                 className="w-full"
               >
@@ -422,7 +422,7 @@ export function TimelessWeddings({
                             maxLength={5000}
                             {...field}
                           />
-                          <div className="text-xs text-white/50">{field.value.length}/5000</div>
+                          <div className="text-xs text-white/50">{(field.value || '').length}/5000</div>
                           <FormMessage />
                         </FormItem>
                       )}

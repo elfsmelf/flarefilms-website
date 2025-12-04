@@ -18,7 +18,7 @@ const fadeInOnScroll = {
   },
   transition: {
     duration: 0.8,
-    ease: "easeOut",
+    ease: "easeOut" as const,
   },
 }
 
@@ -84,7 +84,7 @@ export function About() {
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+              transition={{ duration: 0.8, ease: "easeOut" as const, delay: 0.3 }}
             >
               <div className="relative aspect-[3/4] w-full overflow-hidden">
                 <Image

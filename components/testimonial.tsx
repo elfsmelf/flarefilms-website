@@ -165,7 +165,7 @@ export function Testimonial() {
                   }}
                   transition={{
                     duration: 0.4,
-                    ease: "easeOut",
+                    ease: "easeOut" as const,
                   }}
                   className="font-cormorant text-3xl md:text-5xl text-[#F5F3ED] leading-tight tracking-normal font-light"
                 >
@@ -232,7 +232,7 @@ export function Testimonial() {
                   }}
                   transition={{
                     duration: 0.4,
-                    ease: "easeOut",
+                    ease: "easeOut" as const,
                     delay: 0.1,
                   }}
                   className="font-sans text-base md:text-lg text-[#C7C5BF] leading-relaxed tracking-tight"

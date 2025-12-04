@@ -33,7 +33,7 @@ export const PricingHeader = ({ title = "No hidden pricing.", className }: Prici
           }}
           transition={{
             duration: 0.8,
-            ease: "easeOut",
+            ease: "easeOut" as const,
           }}
           className="relative w-full max-w-full"
         >

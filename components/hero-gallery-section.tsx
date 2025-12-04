@@ -46,7 +46,7 @@ export const HeroGallerySection = ({
     visible: (delay: number) => ({
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, delay, ease: "easeOut" },
+      transition: { duration: 0.8, delay, ease: "easeOut" as const },
     }),
   }
 

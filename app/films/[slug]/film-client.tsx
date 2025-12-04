@@ -13,7 +13,7 @@ const fadeInOnScroll = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "0px 0px -100px 0px" },
-  transition: { duration: 0.3, ease: "easeOut" },
+  transition: { duration: 0.3, ease: "easeOut" as const },
 }
 
 interface FilmClientProps {
@@ -127,7 +127,7 @@ export function FilmClient({ film, recommendedFilms }: FilmClientProps) {
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       {/* Show "View More" overlay on last image if there are more */}
-                      {index === 1 && film.venue.gallery.length > 2 && (
+                      {index === 1 && film.venue?.gallery && film.venue.gallery.length > 2 && (
                         <div className="absolute inset-0 bg-[#24221d]/70 backdrop-blur-sm flex items-center justify-center">
                           <span className="text-white font-sans text-sm md:text-base uppercase tracking-wider">
                             +{film.venue.gallery.length - 2} More
@@ -272,7 +272,7 @@ export function FilmClient({ film, recommendedFilms }: FilmClientProps) {
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  transition={{ duration: 0.3, ease: "easeOut" as const }}
                   className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-lg group"
                 >
                   <Image
@@ -306,7 +306,7 @@ export function FilmClient({ film, recommendedFilms }: FilmClientProps) {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  transition={{ duration: 0.3, ease: "easeOut" as const }}
                 >
                   <Link href={`/films/${recommendedFilm.slug}`}>
                     <div className="relative group cursor-pointer overflow-hidden shadow-lg mb-4">

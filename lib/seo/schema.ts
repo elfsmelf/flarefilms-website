@@ -26,7 +26,7 @@ export function generateVideoSchema(film: {
   title: string
   tagline?: string | null
   headerImage: string | null
-  createdAt: Date
+  createdAt?: Date
   videoUrl?: string | null
 }) {
   return {
@@ -35,7 +35,7 @@ export function generateVideoSchema(film: {
     name: `${film.title} - Wedding Film`,
     description: film.tagline || `${film.title} wedding film by Flare Films`,
     thumbnailUrl: film.headerImage || undefined,
-    uploadDate: film.createdAt.toISOString(),
+    uploadDate: film.createdAt?.toISOString() || new Date().toISOString(),
     contentUrl: film.videoUrl || undefined,
     embedUrl: film.videoUrl || undefined,
     duration: 'PT10M', // Adjust based on actual video length if available

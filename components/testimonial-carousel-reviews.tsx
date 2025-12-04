@@ -156,7 +156,7 @@ export const TestimonialCarousel = () => {
                 }}
                 transition={{
                   duration: 0.4,
-                  ease: "easeOut",
+                  ease: "easeOut" as const,
                 }}
                 className="font-cormorant text-3xl md:text-5xl text-[#5a534b] leading-tight tracking-normal font-light"
               >
@@ -223,7 +223,7 @@ export const TestimonialCarousel = () => {
                 }}
                 transition={{
                   duration: 0.4,
-                  ease: "easeOut",
+                  ease: "easeOut" as const,
                   delay: 0.1,
                 }}
                 className="font-sans text-base md:text-lg text-[#7b756c] leading-relaxed tracking-tight"

@@ -32,7 +32,7 @@ export function VenuesGrid({ venues }: VenuesGridProps) {
 
   // Extract unique cities
   const cities = useMemo(() => {
-    const uniqueCities = new Set(venues.map(v => v.city).filter(Boolean))
+    const uniqueCities = new Set(venues.map(v => v.city).filter((city): city is string => city !== null))
     return Array.from(uniqueCities).sort()
   }, [venues])
 
@@ -150,7 +150,7 @@ export function VenuesGrid({ venues }: VenuesGridProps) {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    transition={{ duration: 0.3, ease: "easeOut" as const }}
                     className="w-full"
                   >
                     <Link href={`/venues/${venue.slug}`}>
