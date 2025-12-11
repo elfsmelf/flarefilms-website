@@ -36,27 +36,30 @@ export function FilmClient({ film, recommendedFilms }: FilmClientProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-[32px] md:text-[40px] lg:text-[48px] font-cormorant tracking-wide text-[#F5F3ED] mb-4 leading-tight"
+                className="text-[32px] md:text-[40px] lg:text-[48px] font-cormorant tracking-wide text-[#F5F3ED] mb-2 leading-tight"
               >
                 {film.title}
               </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-                className="text-[18px] md:text-[20px] font-sans text-[#C7C5BF] tracking-wide"
-              >
-                {film.subtitle}
-              </motion.p>
+              {/* SEO: Venue-targeted H2 for keyword optimization */}
+              {film.venue?.venueTitle && (
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.05 }}
+                  className="text-[20px] md:text-[24px] lg:text-[28px] font-cormorant tracking-wide text-[#b8a862] leading-tight"
+                >
+                  {film.venue.venueTitle} Wedding Film
+                </motion.h2>
+              )}
             </div>
             <div className="flex items-center lg:justify-end">
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-base md:text-lg font-sans text-[#C7C5BF] leading-relaxed italic text-right"
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="text-base md:text-lg font-sans text-[#C7C5BF] leading-relaxed italic lg:text-right"
               >
-                {film.tagline}
+                {film.subtitle}
               </motion.p>
             </div>
           </div>

@@ -1,6 +1,14 @@
 import Link from "next/link"
 
-const locations = ["Brisbane", "Byron Bay", "Gold Coast", "Moreton Bay", "Noosa", "Sunshine Coast", "Toowoomba"]
+const locations = [
+  { name: "Brisbane", href: "/" },
+  { name: "Byron Bay", href: "/byron-bay-wedding-videographer" },
+  { name: "Gold Coast", href: "/gold-coast-wedding-videographer" },
+  { name: "Moreton Bay", href: "/moreton-bay-wedding-videographer" },
+  { name: "Noosa", href: "/noosa-wedding-videographer" },
+  { name: "Sunshine Coast", href: "/sunshine-coast-wedding-videographer" },
+  { name: "Toowoomba", href: "/toowoomba-wedding-videographer" },
+]
 
 const socialLinks = [
   { name: "Instagram", href: "https://www.instagram.com/flarefilms.au/" },
@@ -43,12 +51,12 @@ export function Footer() {
             <nav className="w-full">
               <ul className="flex flex-wrap justify-start m-0 p-0 list-none">
                 {locations.map((location) => (
-                  <li key={location} className="flex-grow flex">
+                  <li key={location.name} className="flex-grow flex">
                     <Link
-                      href="#"
+                      href={location.href}
                       className="text-[#C7C5BF] uppercase tracking-[0.3em] text-[10px] font-sans transition-colors duration-400 hover:text-[#F5F3ED] px-[23px] py-[14px] leading-[15px] flex items-center whitespace-nowrap"
                     >
-                      {location}
+                      {location.name}
                     </Link>
                   </li>
                 ))}

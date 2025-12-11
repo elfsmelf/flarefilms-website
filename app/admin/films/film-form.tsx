@@ -8,7 +8,73 @@ import { RichTextEditor } from '@/components/admin/rich-text-editor'
 import { createFilm, updateFilm } from '@/lib/actions/films'
 import type { FilmFormData, VendorFormData, GalleryImageFormData } from '@/lib/actions/films'
 import { convertToEmbedUrl } from '@/lib/video-url-helper'
-import { Plus, X, Loader2 } from 'lucide-react'
+import { Plus, X, Loader2, Search } from 'lucide-react'
+
+// Google Search Preview Component
+function GoogleSearchPreview({
+  title,
+  slug,
+  tagline,
+  venueTitle,
+}: {
+  title: string
+  slug: string
+  tagline: string
+  venueTitle?: string
+}) {
+  // Generate the SEO title (matching the actual metadata generation)
+  const seoTitle = venueTitle
+    ? `${title || 'Film Title'} | ${venueTitle} Wedding Film`
+    : `${title || 'Film Title'} - Wedding Film`
+
+  // Generate the SEO description (matching the actual metadata generation)
+  const seoDescription = venueTitle
+    ? `Watch ${title || 'Film Title'}'s beautiful ${venueTitle} wedding film. ${tagline || ''} Captured by Flare Films, Brisbane's premier wedding videographer.`.trim()
+    : tagline || `${title || 'Film Title'} wedding film by Flare Films`
+
+  const url = `flarefilms.com.au › films › ${slug || 'film-slug'}`
+
+  // Truncate description to ~155 characters like Google does
+  const truncatedDescription = seoDescription.length > 155
+    ? seoDescription.substring(0, 155) + '...'
+    : seoDescription
+
+  return (
+    <div className="border border-[#dfe1e5] rounded-lg p-6 bg-white max-w-2xl">
+      {/* Google-style search result */}
+      <div className="space-y-1">
+        {/* URL breadcrumb */}
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded-full bg-[#f1f3f4] flex items-center justify-center">
+            <Search size={14} className="text-[#5f6368]" />
+          </div>
+          <span className="text-sm text-[#202124] truncate">{url}</span>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-xl text-[#1a0dab] hover:underline cursor-pointer leading-tight font-normal">
+          {seoTitle}
+        </h3>
+
+        {/* Description */}
+        <p className="text-sm text-[#4d5156] leading-relaxed">
+          {truncatedDescription}
+        </p>
+      </div>
+
+      {/* SEO Tips */}
+      <div className="mt-6 pt-4 border-t border-[#e8eaed]">
+        <p className="text-xs font-sans uppercase tracking-wider text-[#7B756C] mb-2">SEO Tips</p>
+        <ul className="text-xs text-[#9B9589] space-y-1">
+          <li>• Title length: {seoTitle.length}/60 characters {seoTitle.length > 60 ? '⚠️ Too long' : '✓'}</li>
+          <li>• Description length: {seoDescription.length}/155 characters {seoDescription.length > 155 ? '⚠️ May be truncated' : '✓'}</li>
+          {venueTitle && <li>• ✓ Venue keyword included: "{venueTitle} Wedding Film"</li>}
+          {!venueTitle && <li>• 💡 Link a venue to add venue-targeted keywords</li>}
+        </ul>
+      </div>
+    </div>
+  )
+}
 
 interface FilmFormProps {
   film?: {
@@ -546,6 +612,21 @@ export function FilmForm({ film, venues }: FilmFormProps) {
           existingImages={galleryImages}
           onImagesChange={setGalleryImages}
           maxImages={100}
+        />
+      </div>
+
+      {/* Google Search Preview */}
+      <div className="bg-white p-8 shadow-sm">
+        <h2 className="font-cormorant text-2xl text-[#5a534b] mb-6">Google Search Preview</h2>
+        <p className="text-sm text-[#9B9589] mb-6">
+          Preview how this film will appear in Google search results
+        </p>
+
+        <GoogleSearchPreview
+          title={title}
+          slug={slug}
+          tagline={tagline}
+          venueTitle={venues.find(v => v.id === venueId)?.venueTitle}
         />
       </div>
 

@@ -111,3 +111,59 @@ export async function getBlogPostBySlug(slug: string) {
     return null
   }
 }
+
+export async function toggleBlogPublished(id: string) {
+  try {
+    const post = await db.query.blogPosts.findFirst({
+      where: eq(blogPosts.id, id),
+    })
+
+    if (!post) {
+      return { success: false, error: "Blog post not found" }
+    }
+
+    await db
+      .update(blogPosts)
+      .set({
+        published: !post.published,
+        updatedAt: new Date(),
+      })
+      .where(eq(blogPosts.id, id))
+
+    revalidatePath("/admin/blog")
+    revalidatePath("/blog")
+
+    return { success: true }
+  } catch (error) {
+    console.error("Error toggling blog published status:", error)
+    return { success: false, error: "Failed to toggle published status" }
+  }
+}
+
+export async function toggleBlogFeatured(id: string) {
+  try {
+    const post = await db.query.blogPosts.findFirst({
+      where: eq(blogPosts.id, id),
+    })
+
+    if (!post) {
+      return { success: false, error: "Blog post not found" }
+    }
+
+    await db
+      .update(blogPosts)
+      .set({
+        featured: !post.featured,
+        updatedAt: new Date(),
+      })
+      .where(eq(blogPosts.id, id))
+
+    revalidatePath("/admin/blog")
+    revalidatePath("/blog")
+
+    return { success: true }
+  } catch (error) {
+    console.error("Error toggling blog featured status:", error)
+    return { success: false, error: "Failed to toggle featured status" }
+  }
+}

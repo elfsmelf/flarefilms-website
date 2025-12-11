@@ -5,6 +5,17 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { MapPin, Phone, Globe, ChevronRight } from "lucide-react"
 import { useState } from "react"
+import { VenueFilmsSection } from "./venue-films-section"
+
+interface Film {
+  id: string
+  slug: string
+  title: string
+  subtitle: string
+  tagline: string
+  location: string
+  headerImage: string
+}
 
 interface VenueData {
   name: string
@@ -29,7 +40,7 @@ interface VenueData {
   images: string[]
 }
 
-export function VenuePageClient({ venueData, slug }: { venueData: VenueData; slug: string }) {
+export function VenuePageClient({ venueData, slug, films = [] }: { venueData: VenueData; slug: string; films?: Film[] }) {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -197,6 +208,11 @@ export function VenuePageClient({ venueData, slug }: { venueData: VenueData; slu
                   </div>
                 </div>
               </motion.div>
+
+              {/* Films Section - only show if venue has films */}
+              {films.length > 0 && (
+                <VenueFilmsSection films={films} venueName={venueData.name} />
+              )}
 
               {/* Photo Gallery */}
               <motion.div

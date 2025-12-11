@@ -1,8 +1,13 @@
 "use client"
-import { useState } from "react"
+import { useState, useCallback, useEffect } from "react"
 import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel"
 
 type TestimonialData = {
   id: number
@@ -69,37 +74,32 @@ const TESTIMONIALS: TestimonialData[] = [
 ]
 
 export function Testimonial() {
+  const [api, setApi] = useState<CarouselApi>()
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [direction, setDirection] = useState(0)
 
-  const nextSlide = () => {
-    setDirection(1)
-    setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length)
-  }
+  const onSelect = useCallback(() => {
+    if (!api) return
+    setCurrentIndex(api.selectedScrollSnap())
+  }, [api])
 
-  const prevSlide = () => {
-    setDirection(-1)
-    setCurrentIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
-  }
+  const scrollPrev = useCallback(() => {
+    api?.scrollPrev()
+  }, [api])
 
-  const currentTestimonial = TESTIMONIALS[currentIndex]
+  const scrollNext = useCallback(() => {
+    api?.scrollNext()
+  }, [api])
 
-  const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 50 : -50,
-      opacity: 0,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 50 : -50,
-      opacity: 0,
-    }),
-  }
+  // Set up the select callback when API is ready
+  useEffect(() => {
+    if (!api) return
+    api.on("select", onSelect)
+    onSelect()
+
+    return () => {
+      api.off("select", onSelect)
+    }
+  }, [api, onSelect])
 
   return (
     <section className="py-20 px-6" style={{ backgroundColor: "#24221D" }}>
@@ -122,7 +122,7 @@ export function Testimonial() {
             {/* Pagination Controls */}
             <div className="flex items-center justify-center min-w-[160px] text-[#b8a862] mx-auto md:mx-0">
               <button
-                onClick={prevSlide}
+                onClick={scrollPrev}
                 className="relative w-8 h-8 flex items-center justify-center cursor-pointer hover:text-[#d4c9a0] transition-colors focus:outline-none"
                 aria-label="Previous slide"
               >
@@ -134,7 +134,7 @@ export function Testimonial() {
               </h5>
 
               <button
-                onClick={nextSlide}
+                onClick={scrollNext}
                 className="relative w-8 h-8 flex items-center justify-center cursor-pointer hover:text-[#d4c9a0] transition-colors focus:outline-none"
                 aria-label="Next slide"
               >
@@ -145,104 +145,49 @@ export function Testimonial() {
             <div className="hidden md:block w-20"></div>
           </div>
 
-          {/* Main Content Area */}
-          <div className="flex flex-col md:flex-row items-center justify-between w-full relative gap-8 md:gap-4 lg:gap-12">
-            {/* Left Section: Title */}
-            <div className="w-full md:w-[25%] lg:w-[340px] text-center md:text-right order-1 md:order-1 z-10">
-              <AnimatePresence mode="wait">
-                <motion.h2
-                  key={currentIndex}
-                  initial={{
-                    opacity: 0,
-                    y: 10,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    y: -10,
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    ease: "easeOut" as const,
-                  }}
-                  className="font-cormorant text-3xl md:text-5xl text-[#F5F3ED] leading-tight tracking-normal font-light"
-                >
-                  {currentTestimonial.title}
-                </motion.h2>
-              </AnimatePresence>
-            </div>
+          {/* Carousel */}
+          <Carousel
+            setApi={setApi}
+            opts={{
+              align: "center",
+              loop: true,
+              dragFree: false,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-0">
+              {TESTIMONIALS.map((testimonial, index) => (
+                <CarouselItem key={testimonial.id} className="pl-0">
+                  {/* Main Content Area */}
+                  <div className="flex flex-col md:flex-row items-center justify-between w-full relative gap-8 md:gap-4 lg:gap-12">
+                    {/* Left Section: Title */}
+                    <div className="w-full md:w-[25%] lg:w-[340px] text-center md:text-right order-1 md:order-1 z-10">
+                      <h2 className="font-cormorant text-3xl md:text-5xl text-[#F5F3ED] leading-tight tracking-normal font-light">
+                        {testimonial.title}
+                      </h2>
+                    </div>
 
-            {/* Center Section: Image */}
-            <div className="w-full md:w-[40%] lg:w-[380px] flex-shrink-0 relative order-2 md:order-2 h-[400px] md:h-[500px] lg:h-[579px]">
-              {/* Click zones for navigation over image */}
-              <div
-                className="absolute top-0 left-0 w-1/2 h-full z-20 cursor-pointer"
-                onClick={prevSlide}
-                title="Previous"
-              />
-              <div className="absolute top-0 right-0 w-1/2 h-full z-20 cursor-pointer" onClick={nextSlide} title="Next" />
+                    {/* Center Section: Image */}
+                    <div className="w-full md:w-[40%] lg:w-[380px] flex-shrink-0 relative order-2 md:order-2 h-[400px] md:h-[500px] lg:h-[579px]">
+                      <img
+                        src={testimonial.image || "/placeholder.svg"}
+                        alt={testimonial.title}
+                        className="w-full h-full object-cover object-center shadow-md cursor-grab active:cursor-grabbing"
+                        draggable={false}
+                      />
+                    </div>
 
-              <AnimatePresence initial={false} custom={direction}>
-                <motion.div
-                  key={currentIndex}
-                  custom={direction}
-                  variants={variants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{
-                    x: {
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 30,
-                    },
-                    opacity: {
-                      duration: 0.2,
-                    },
-                  }}
-                  className="absolute inset-0 w-full h-full"
-                >
-                  <img
-                    src={currentTestimonial.image || "/placeholder.svg"}
-                    alt={currentTestimonial.title}
-                    className="w-full h-full object-cover object-center shadow-md"
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Right Section: Text */}
-            <div className="w-full md:w-[35%] lg:w-[480px] text-center md:text-left order-3 md:order-3">
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={currentIndex}
-                  initial={{
-                    opacity: 0,
-                    x: 20,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    x: -20,
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    ease: "easeOut" as const,
-                    delay: 0.1,
-                  }}
-                  className="font-sans text-base md:text-lg text-[#C7C5BF] leading-relaxed tracking-tight"
-                >
-                  {currentTestimonial.text}
-                </motion.p>
-              </AnimatePresence>
-            </div>
-          </div>
+                    {/* Right Section: Text */}
+                    <div className="w-full md:w-[35%] lg:w-[480px] text-center md:text-left order-3 md:order-3">
+                      <p className="font-sans text-base md:text-lg text-[#C7C5BF] leading-relaxed tracking-tight">
+                        {testimonial.text}
+                      </p>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </div>
 

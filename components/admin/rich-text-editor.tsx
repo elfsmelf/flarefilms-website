@@ -5,6 +5,7 @@ import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 import Underline from '@tiptap/extension-underline'
 import TextAlign from '@tiptap/extension-text-align'
+import Link from '@tiptap/extension-link'
 import {
   Bold,
   Italic,
@@ -18,8 +19,11 @@ import {
   Undo,
   Redo,
   ChevronDown,
+  Link as LinkIcon,
+  Unlink,
+  ExternalLink,
 } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 interface RichTextEditorProps {
   content: string
@@ -31,6 +35,8 @@ interface RichTextEditorProps {
 export function RichTextEditor({ content, onChange, disabled, placeholder }: RichTextEditorProps) {
   const [headingDropdownOpen, setHeadingDropdownOpen] = useState(false)
   const [listDropdownOpen, setListDropdownOpen] = useState(false)
+  const [linkPopoverOpen, setLinkPopoverOpen] = useState(false)
+  const [linkUrl, setLinkUrl] = useState('')
 
   const editor = useEditor({
     extensions: [
@@ -45,6 +51,14 @@ export function RichTextEditor({ content, onChange, disabled, placeholder }: Ric
       Underline,
       TextAlign.configure({
         types: ['heading', 'paragraph'],
+      }),
+      Link.configure({
+        openOnClick: false,
+        HTMLAttributes: {
+          class: 'text-[#b8a862] underline hover:text-[#a89752]',
+          target: '_blank',
+          rel: 'noopener noreferrer',
+        },
       }),
     ],
     content,
@@ -64,15 +78,54 @@ export function RichTextEditor({ content, onChange, disabled, placeholder }: Ric
 
   // Close dropdowns when clicking outside
   useEffect(() => {
-    const handleClickOutside = () => {
-      setHeadingDropdownOpen(false)
-      setListDropdownOpen(false)
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (!target.closest('.link-popover') && !target.closest('.link-button')) {
+        setLinkPopoverOpen(false)
+      }
+      if (!target.closest('.heading-dropdown')) {
+        setHeadingDropdownOpen(false)
+      }
+      if (!target.closest('.list-dropdown')) {
+        setListDropdownOpen(false)
+      }
     }
-    if (headingDropdownOpen || listDropdownOpen) {
-      document.addEventListener('click', handleClickOutside)
-      return () => document.removeEventListener('click', handleClickOutside)
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [])
+
+  const setLink = useCallback(() => {
+    if (!editor) return
+
+    if (linkUrl === '') {
+      editor.chain().focus().extendMarkRange('link').unsetLink().run()
+      setLinkPopoverOpen(false)
+      return
     }
-  }, [headingDropdownOpen, listDropdownOpen])
+
+    // Add https:// if no protocol is specified
+    let url = linkUrl
+    if (!/^https?:\/\//i.test(url)) {
+      url = 'https://' + url
+    }
+
+    editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
+    setLinkPopoverOpen(false)
+    setLinkUrl('')
+  }, [editor, linkUrl])
+
+  const openLinkPopover = useCallback(() => {
+    if (!editor) return
+
+    const previousUrl = editor.getAttributes('link').href || ''
+    setLinkUrl(previousUrl)
+    setLinkPopoverOpen(true)
+  }, [editor])
+
+  const removeLink = useCallback(() => {
+    if (!editor) return
+    editor.chain().focus().unsetLink().run()
+  }, [editor])
 
   if (!editor) {
     return null
@@ -87,15 +140,17 @@ export function RichTextEditor({ content, onChange, disabled, placeholder }: Ric
 
   return (
     <div className="border border-[#d4cfca] focus-within:border-[#b8a862] transition-colors rounded-sm">
-      {/* Toolbar */}
-      <div className="border-b border-[#d4cfca] bg-[#FAF9F7] p-2 flex gap-1 flex-wrap items-center">
+      {/* Toolbar - Sticky */}
+      <div className="border-b border-[#d4cfca] bg-[#FAF9F7] p-2 flex gap-1 flex-wrap items-center sticky top-0 z-10">
         {/* Heading Dropdown */}
-        <div className="relative">
+        <div className="relative heading-dropdown">
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation()
               setHeadingDropdownOpen(!headingDropdownOpen)
+              setListDropdownOpen(false)
+              setLinkPopoverOpen(false)
             }}
             className="px-3 py-2 rounded hover:bg-[#d4cfca]/30 transition-colors text-[#7B756C] font-sans text-sm flex items-center gap-2 min-w-[120px] justify-between"
             disabled={disabled}
@@ -105,7 +160,7 @@ export function RichTextEditor({ content, onChange, disabled, placeholder }: Ric
           </button>
 
           {headingDropdownOpen && (
-            <div className="absolute top-full left-0 mt-1 bg-white border border-[#d4cfca] rounded shadow-lg z-10 min-w-[150px]">
+            <div className="absolute top-full left-0 mt-1 bg-white border border-[#d4cfca] rounded shadow-lg z-20 min-w-[150px]">
               <button
                 type="button"
                 onClick={() => {
@@ -189,13 +244,79 @@ export function RichTextEditor({ content, onChange, disabled, placeholder }: Ric
 
         <div className="w-px h-6 bg-[#d4cfca]" />
 
-        {/* Lists Dropdown */}
+        {/* Link Button */}
         <div className="relative">
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation()
+              openLinkPopover()
+              setHeadingDropdownOpen(false)
+              setListDropdownOpen(false)
+            }}
+            className={`p-2 rounded hover:bg-[#d4cfca]/30 transition-colors link-button ${
+              editor.isActive('link') ? 'bg-[#b8a862]/20 text-[#b8a862]' : 'text-[#7B756C]'
+            }`}
+            disabled={disabled}
+            title="Add Link (Cmd+K)"
+          >
+            <LinkIcon size={18} />
+          </button>
+
+          {linkPopoverOpen && (
+            <div className="absolute top-full left-0 mt-1 bg-white border border-[#d4cfca] rounded shadow-lg z-20 p-3 min-w-[300px] link-popover">
+              <div className="flex items-center gap-2 mb-2">
+                <ExternalLink size={16} className="text-[#7B756C]" />
+                <span className="text-sm font-sans text-[#7B756C]">Link URL</span>
+              </div>
+              <div className="flex gap-2">
+                <input
+                  type="url"
+                  value={linkUrl}
+                  onChange={(e) => setLinkUrl(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault()
+                      setLink()
+                    }
+                  }}
+                  placeholder="https://example.com"
+                  className="flex-1 px-3 py-2 text-sm border border-[#d4cfca] rounded focus:border-[#b8a862] focus:outline-none"
+                  autoFocus
+                />
+                <button
+                  type="button"
+                  onClick={setLink}
+                  className="px-3 py-2 bg-[#b8a862] text-white text-sm rounded hover:bg-[#a89752] transition-colors"
+                >
+                  Apply
+                </button>
+              </div>
+              {editor.isActive('link') && (
+                <button
+                  type="button"
+                  onClick={removeLink}
+                  className="mt-2 flex items-center gap-1 text-sm text-red-600 hover:text-red-700"
+                >
+                  <Unlink size={14} />
+                  Remove link
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+
+        <div className="w-px h-6 bg-[#d4cfca]" />
+
+        {/* Lists Dropdown */}
+        <div className="relative list-dropdown">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation()
               setListDropdownOpen(!listDropdownOpen)
+              setHeadingDropdownOpen(false)
+              setLinkPopoverOpen(false)
             }}
             className={`px-3 py-2 rounded hover:bg-[#d4cfca]/30 transition-colors font-sans text-sm flex items-center gap-2 ${
               editor.isActive('bulletList') || editor.isActive('orderedList')
@@ -216,7 +337,7 @@ export function RichTextEditor({ content, onChange, disabled, placeholder }: Ric
           </button>
 
           {listDropdownOpen && (
-            <div className="absolute top-full left-0 mt-1 bg-white border border-[#d4cfca] rounded shadow-lg z-10 min-w-[160px]">
+            <div className="absolute top-full left-0 mt-1 bg-white border border-[#d4cfca] rounded shadow-lg z-20 min-w-[160px]">
               <button
                 type="button"
                 onClick={() => {
@@ -343,11 +464,13 @@ export function RichTextEditor({ content, onChange, disabled, placeholder }: Ric
         </button>
       </div>
 
-      {/* Editor */}
-      <EditorContent
-        editor={editor}
-        className="prose prose-sm max-w-none p-4 min-h-[300px] focus:outline-none [&_.ProseMirror]:outline-none [&_.ProseMirror]:min-h-[300px]"
-      />
+      {/* Editor - Scrollable with fixed height */}
+      <div className="max-h-[500px] overflow-y-auto">
+        <EditorContent
+          editor={editor}
+          className="prose prose-sm max-w-none p-4 min-h-[300px] focus:outline-none [&_.ProseMirror]:outline-none [&_.ProseMirror]:min-h-[300px]"
+        />
+      </div>
 
       <style jsx global>{`
         .ProseMirror {
@@ -425,6 +548,14 @@ export function RichTextEditor({ content, onChange, disabled, placeholder }: Ric
         }
         .ProseMirror u {
           text-decoration: underline;
+        }
+        .ProseMirror a {
+          color: #b8a862;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+        .ProseMirror a:hover {
+          color: #a89752;
         }
         .ProseMirror p.is-editor-empty:first-child::before {
           content: attr(data-placeholder);

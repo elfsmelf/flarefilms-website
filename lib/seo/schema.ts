@@ -28,17 +28,40 @@ export function generateVideoSchema(film: {
   headerImage: string | null
   createdAt?: Date
   videoUrl?: string | null
+  venue?: {
+    venueTitle: string
+    city?: string | null
+  } | null
 }) {
+  const hasVenue = film.venue?.venueTitle
+
   return {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: `${film.title} - Wedding Film`,
-    description: film.tagline || `${film.title} wedding film by Flare Films`,
+    name: hasVenue
+      ? `${film.title} | ${film.venue!.venueTitle} Wedding Film`
+      : `${film.title} - Wedding Film`,
+    description: hasVenue
+      ? `${film.title}'s ${film.venue!.venueTitle} wedding film. ${film.tagline || ''} By Flare Films.`.trim()
+      : film.tagline || `${film.title} wedding film by Flare Films`,
     thumbnailUrl: film.headerImage || undefined,
     uploadDate: film.createdAt?.toISOString() || new Date().toISOString(),
     contentUrl: film.videoUrl || undefined,
     embedUrl: film.videoUrl || undefined,
     duration: 'PT10M', // Adjust based on actual video length if available
+    // SEO: Include venue location in schema
+    ...(hasVenue && {
+      contentLocation: {
+        '@type': 'Place',
+        name: film.venue!.venueTitle,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: film.venue!.city || 'Brisbane',
+          addressRegion: 'QLD',
+          addressCountry: 'AU',
+        },
+      },
+    }),
   }
 }
 

@@ -2,7 +2,6 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ImageCarousel } from "@/components/image-carousel"
 import { VenuePageClient } from "@/components/venue-page-client"
-import { VenueFilmsSection } from "@/components/venue-films-section"
 import { getVenueBySlug, getAllVenues } from "@/lib/actions/venues"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
@@ -28,7 +27,7 @@ export async function generateMetadata({
 
   if (!venue || !venue.published) return {}
 
-  const title = `${venue.venueTitle} - Wedding Venue in ${venue.city || 'Brisbane'}`
+  const title = `${venue.venueTitle} | ${venue.city || 'Brisbane'} Wedding Venue`
   const description = venue.shortDescription || `${venue.venueTitle} wedding venue in ${venue.city || 'Brisbane'}, Queensland`
   const url = `https://flarefilms.com.au/venues/${slug}`
 
@@ -66,8 +65,16 @@ export default async function VenuePage({
     notFound()
   }
 
-  // Extract films if they exist
-  const films = dbVenue.weddingFilms?.map((wf) => wf.film).filter(Boolean) || []
+  // Extract films if they exist and map to expected format
+  const films = dbVenue.weddingFilms?.map((wf) => wf.film).filter(Boolean).map((film) => ({
+    id: film.id,
+    slug: film.slug,
+    title: film.title,
+    subtitle: film.subtitle,
+    tagline: film.tagline,
+    location: film.location,
+    headerImage: film.headerImage,
+  })) || []
 
   // Get gallery images
   const images = dbVenue.gallery?.map((img) => img.url) || []
@@ -134,12 +141,7 @@ export default async function VenuePage({
       <JsonLd data={breadcrumbSchema} />
       <main className="min-h-screen bg-[#E7E4DF]">
         <Header />
-        <VenuePageClient venueData={venueData} slug={slug} />
-
-        {/* Films Section - only show if venue has films */}
-        {films.length > 0 && (
-          <VenueFilmsSection films={films} venueName={dbVenue.venueTitle} />
-        )}
+        <VenuePageClient venueData={venueData} slug={slug} films={films} />
 
         <ImageCarousel />
         <Footer />

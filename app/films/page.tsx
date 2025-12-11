@@ -45,9 +45,9 @@ export default async function FilmsPage() {
         />
 
         {/* Hero Section */}
-        <section className="relative bg-[#24221D] pt-40 pb-16 px-6 z-10">
+        <section className="relative bg-[#24221D] pt-40 pb-8 px-6 z-10">
           <div className="max-w-[1200px] mx-auto text-center relative">
-            <h1 className="text-[40px] md:text-[60px] lg:text-[72px] font-cormorant tracking-wide text-[#F5F3ED] mb-6 leading-tight">
+            <h1 className="text-[40px] md:text-[60px] lg:text-[72px] font-cormorant tracking-wide text-[#F5F3ED] mb-4 leading-tight">
               Wedding Films
             </h1>
             <p className="font-sans text-sm uppercase tracking-[0.3em] text-[#b8a862] max-w-[600px] mx-auto">
@@ -57,7 +57,7 @@ export default async function FilmsPage() {
         </section>
 
         {/* Films Grid with Filter */}
-        <section className="relative bg-[#24221D] py-12 px-6 z-10">
+        <section className="relative bg-[#24221D] pt-6 pb-12 px-6 z-10">
           <FilmsListWithFilter films={allFilms} />
         </section>
       </div>

@@ -9,7 +9,71 @@ import { createVenue, updateVenue } from '@/lib/actions/venues'
 import type { VenueFormData, VenueGalleryImageFormData } from '@/lib/actions/venues'
 import { fetchVenueDataFromPerplexity, generateVenueBlogArticle } from '@/lib/actions/perplexity'
 import { fetchVenueImagesFromGooglePlaces } from '@/lib/actions/google-places'
-import { Loader2, Sparkles, Images } from 'lucide-react'
+import { Loader2, Sparkles, Images, Search } from 'lucide-react'
+
+// Google Search Preview Component
+function GoogleSearchPreview({
+  venueTitle,
+  slug,
+  shortDescription,
+  city,
+}: {
+  venueTitle: string
+  slug: string
+  shortDescription: string
+  city: string
+}) {
+  // Generate the SEO title (matching the actual metadata generation)
+  const seoTitle = `${venueTitle || 'Venue Title'} | ${city || 'Brisbane'} Wedding Venue`
+
+  // Generate the SEO description (matching the actual metadata generation)
+  const seoDescription = shortDescription || `${venueTitle || 'Venue Title'} wedding venue in ${city || 'Brisbane'}, Queensland`
+
+  const url = `flarefilms.com.au › venues › ${slug || 'venue-slug'}`
+
+  // Truncate description to ~155 characters like Google does
+  const truncatedDescription = seoDescription.length > 155
+    ? seoDescription.substring(0, 155) + '...'
+    : seoDescription
+
+  return (
+    <div className="border border-[#dfe1e5] rounded-lg p-6 bg-white max-w-2xl">
+      {/* Google-style search result */}
+      <div className="space-y-1">
+        {/* URL breadcrumb */}
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded-full bg-[#f1f3f4] flex items-center justify-center">
+            <Search size={14} className="text-[#5f6368]" />
+          </div>
+          <span className="text-sm text-[#202124] truncate">{url}</span>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-xl text-[#1a0dab] hover:underline cursor-pointer leading-tight font-normal">
+          {seoTitle}
+        </h3>
+
+        {/* Description */}
+        <p className="text-sm text-[#4d5156] leading-relaxed">
+          {truncatedDescription}
+        </p>
+      </div>
+
+      {/* SEO Tips */}
+      <div className="mt-6 pt-4 border-t border-[#e8eaed]">
+        <p className="text-xs font-sans uppercase tracking-wider text-[#7B756C] mb-2">SEO Tips</p>
+        <ul className="text-xs text-[#9B9589] space-y-1">
+          <li>• Title length: {seoTitle.length}/60 characters {seoTitle.length > 60 ? '⚠️ Too long' : '✓'}</li>
+          <li>• Description length: {seoDescription.length}/155 characters {seoDescription.length > 155 ? '⚠️ May be truncated' : '✓'}</li>
+          {city && <li>• ✓ Location keyword included: "{city}"</li>}
+          {!city && <li>• 💡 Add a city to improve local SEO</li>}
+          {shortDescription && <li>• ✓ Short description provided</li>}
+          {!shortDescription && <li>• 💡 Add a short description for better search results</li>}
+        </ul>
+      </div>
+    </div>
+  )
+}
 
 interface VenueFormProps {
   venue?: {
@@ -87,6 +151,7 @@ const cityOptions = [
   { value: 'Sunshine Coast', label: 'Sunshine Coast' },
   { value: 'Byron Bay', label: 'Byron Bay' },
   { value: 'Toowoomba', label: 'Toowoomba' },
+  { value: 'Regional QLD', label: 'Regional QLD' },
 ]
 
 const cityPageUrlOptions = [
@@ -97,6 +162,7 @@ const cityPageUrlOptions = [
   { value: 'https://flarefilms.com.au/moreton-bay-wedding-videographer/', label: 'Moreton Bay' },
   { value: 'https://flarefilms.com.au/noosa-wedding-videographer/', label: 'Noosa' },
   { value: 'https://flarefilms.com.au/sunshine-coast-wedding-videographer/', label: 'Sunshine Coast' },
+  { value: 'https://flarefilms.com.au/regional-qld-wedding-videographer/', label: 'Regional QLD' },
 ]
 
 const weddingTypeOptions = [
@@ -333,7 +399,9 @@ export function VenueForm({ venue, allFilms = [], allVenues = [] }: VenueFormPro
       if (hasData) {
         setSuccess('Venue details and article autofilled successfully! Please review and update as needed.')
       } else {
-        setError('Failed to fetch venue data. Please try again.')
+        // Show the actual error from the API if available
+        const errorMessage = venueDataResult.error || blogArticleResult.error || 'Failed to fetch venue data. Please try again.'
+        setError(errorMessage)
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred while fetching venue data')
@@ -1270,6 +1338,21 @@ export function VenueForm({ venue, allFilms = [], allVenues = [] }: VenueFormPro
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Google Search Preview */}
+      <div className="bg-white p-8 shadow-sm">
+        <h2 className="font-cormorant text-2xl text-[#5a534b] mb-6">Google Search Preview</h2>
+        <p className="text-sm text-[#9B9589] mb-6">
+          Preview how this venue will appear in Google search results
+        </p>
+
+        <GoogleSearchPreview
+          venueTitle={venueTitle}
+          slug={slug}
+          shortDescription={shortDescription}
+          city={city}
+        />
       </div>
 
       {/* Submit */}

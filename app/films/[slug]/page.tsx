@@ -23,14 +23,33 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!film) return {}
 
-  const title = `${film.title} - Wedding Film`
-  const description = film.tagline || film.subtitle || `${film.title} wedding film by Flare Films`
+  // SEO: Include venue name in title if available for venue-targeted keywords
+  const hasVenue = film.venue?.venueTitle
+  const title = hasVenue
+    ? `${film.title} | ${film.venue!.venueTitle} Wedding Film`
+    : `${film.title} - Wedding Film`
+
+  // SEO: Venue-optimized description
+  const description = hasVenue
+    ? `Watch ${film.title}'s beautiful ${film.venue!.venueTitle} wedding film. ${film.tagline || ''} Captured by Flare Films, Brisbane's premier wedding videographer.`.trim()
+    : film.tagline || film.subtitle || `${film.title} wedding film by Flare Films`
+
   const url = `https://flarefilms.com.au/films/${slug}`
+
+  // SEO: Include venue in keywords if available
+  const keywords = [
+    film.location,
+    "wedding film",
+    "wedding video",
+    film.title,
+    "Brisbane wedding videographer",
+    ...(hasVenue ? [`${film.venue!.venueTitle} wedding film`, `${film.venue!.venueTitle} wedding video`, film.venue!.venueTitle] : []),
+  ]
 
   return {
     title,
     description,
-    keywords: [film.location, "wedding film", "wedding video", film.title, "Brisbane wedding videographer"],
+    keywords,
     openGraph: generateOGMetadata({
       title,
       description,

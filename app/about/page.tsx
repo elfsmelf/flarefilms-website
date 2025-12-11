@@ -283,7 +283,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="relative aspect-[16/9] overflow-hidden bg-white shadow-sm">
                 <Image
-                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12%20(1).webp"
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot%202025-11-30%20at%207.25.02%20pm.png"
                   alt="Google Review 1"
                   fill
                   className="object-contain"
@@ -291,7 +291,7 @@ export default function AboutPage() {
               </div>
               <div className="relative aspect-[16/9] overflow-hidden bg-white shadow-sm">
                 <Image
-                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12%20(2).webp"
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot%202025-11-30%20at%207.32.48%20pm.png"
                   alt="Google Review 2"
                   fill
                   className="object-contain"
@@ -299,7 +299,7 @@ export default function AboutPage() {
               </div>
               <div className="relative aspect-[16/9] overflow-hidden bg-white shadow-sm">
                 <Image
-                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12%20(3).webp"
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot%202025-11-30%20at%207.32.56%20pm.png"
                   alt="Google Review 3"
                   fill
                   className="object-contain"
@@ -307,7 +307,7 @@ export default function AboutPage() {
               </div>
               <div className="relative aspect-[16/9] overflow-hidden bg-white shadow-sm">
                 <Image
-                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12%20(4).webp"
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot%202025-11-30%20at%207.33.07%20pm.png"
                   alt="Google Review 4"
                   fill
                   className="object-contain"
@@ -315,7 +315,7 @@ export default function AboutPage() {
               </div>
               <div className="relative aspect-[16/9] overflow-hidden bg-white shadow-sm">
                 <Image
-                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12.23.06-pm.png"
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot%202025-11-30%20at%207.33.20%20pm.png"
                   alt="Google Review 5"
                   fill
                   className="object-contain"
@@ -323,7 +323,7 @@ export default function AboutPage() {
               </div>
               <div className="relative aspect-[16/9] overflow-hidden bg-white shadow-sm">
                 <Image
-                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12.23.12-pm.png"
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12%20(1).webp"
                   alt="Google Review 6"
                   fill
                   className="object-contain"
@@ -331,7 +331,7 @@ export default function AboutPage() {
               </div>
               <div className="relative aspect-[16/9] overflow-hidden bg-white shadow-sm">
                 <Image
-                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12.23.34-pm.png"
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12%20(2).webp"
                   alt="Google Review 7"
                   fill
                   className="object-contain"
@@ -339,8 +339,48 @@ export default function AboutPage() {
               </div>
               <div className="relative aspect-[16/9] overflow-hidden bg-white shadow-sm">
                 <Image
-                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12.24.02-pm.png"
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12%20(3).webp"
                   alt="Google Review 8"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="relative aspect-[16/9] overflow-hidden bg-white shadow-sm">
+                <Image
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12%20(4).webp"
+                  alt="Google Review 9"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="relative aspect-[16/9] overflow-hidden bg-white shadow-sm">
+                <Image
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12.23.06-pm.png"
+                  alt="Google Review 10"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="relative aspect-[16/9] overflow-hidden bg-white shadow-sm">
+                <Image
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12.23.12-pm.png"
+                  alt="Google Review 11"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="relative aspect-[16/9] overflow-hidden bg-white shadow-sm">
+                <Image
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12.23.34-pm.png"
+                  alt="Google Review 12"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="relative aspect-[16/9] overflow-hidden bg-white shadow-sm">
+                <Image
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/Screenshot-2025-04-23-at-12.24.02-pm.png"
+                  alt="Google Review 13"
                   fill
                   className="object-contain"
                 />

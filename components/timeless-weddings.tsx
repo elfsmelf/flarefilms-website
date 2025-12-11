@@ -1,23 +1,26 @@
 "use client"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { useForm } from "react-hook-form"
+import { CalendarIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Form, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Calendar } from "@/components/ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
 type FormData = {
   firstName: string
   lastName: string
   partnerName: string
   email: string
-  photoFilm: string
   contactNumber: string
   canCall: string
-  weddingDate: string
+  weddingDate: Date | undefined
   weddingDetails: string
   weddingLocation: string
   foundUs: string
@@ -38,21 +41,32 @@ export function TimelessWeddings({
   imageAlt = "Couple portrait",
   className,
 }: TimelessWeddingsProps = {}) {
+  const [calendarOpen, setCalendarOpen] = useState(false)
+  const [calendarMonth, setCalendarMonth] = useState<Date | undefined>(undefined)
+
   const form = useForm<FormData>({
     defaultValues: {
       firstName: "",
       lastName: "",
       partnerName: "",
       email: "",
-      photoFilm: "",
       contactNumber: "",
       canCall: "",
-      weddingDate: "",
+      weddingDate: undefined,
       weddingDetails: "",
       weddingLocation: "",
       foundUs: "",
     },
   })
+
+  function formatDate(date: Date | undefined) {
+    if (!date) return ""
+    return date.toLocaleDateString("en-AU", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    })
+  }
 
   function onSubmit(values: FormData) {
     console.log(values)
@@ -142,13 +156,14 @@ export function TimelessWeddings({
               viewport={{
                 once: true,
               }}
-              className="relative z-10 h-[500px] w-full overflow-hidden bg-gray-800 sm:h-[600px] lg:h-[695px]"
+              className="relative z-10 w-full overflow-hidden bg-gray-800 aspect-video"
             >
-              <img
-                src={imageUrl || "/placeholder.svg"}
-                alt={imageAlt}
-                className="h-full w-full object-cover object-[50%_65%] transition-transform duration-700 hover:scale-105"
-                loading="lazy"
+              <iframe
+                src="https://www.youtube.com/embed/IYCMGWjvP_Q"
+                title="Flare Films Wedding Videography"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="h-full w-full"
               />
             </motion.div>
 
@@ -325,27 +340,6 @@ export function TimelessWeddings({
 
                     <FormField
                       control={form.control}
-                      name="photoFilm"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-white/90">Looking for both Photo + Film? *</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                              <SelectValue placeholder="Select option" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="both">Both Photo + Film</SelectItem>
-                              <SelectItem value="photo">Photo Only</SelectItem>
-                              <SelectItem value="film">Film Only</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
                       name="contactNumber"
                       render={({ field }) => (
                         <FormItem>
@@ -396,15 +390,45 @@ export function TimelessWeddings({
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-white/90">Our wedding date is on *</FormLabel>
-                          <Input
-                            type="date"
-                            value={field.value}
-                            onChange={field.onChange}
-                            onBlur={field.onBlur}
-                            name={field.name}
-                            ref={field.ref}
-                            className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
-                          />
+                          <div className="relative">
+                            <Input
+                              value={formatDate(field.value)}
+                              placeholder="Select your wedding date"
+                              className="bg-white/10 border-white/20 text-white placeholder:text-white/50 pr-10"
+                              readOnly
+                              onClick={() => setCalendarOpen(true)}
+                            />
+                            <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
+                              <PopoverTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  className="absolute top-1/2 right-2 size-6 -translate-y-1/2 hover:bg-white/10"
+                                >
+                                  <CalendarIcon className="size-4 text-white/70" />
+                                  <span className="sr-only">Select date</span>
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent
+                                className="w-auto overflow-hidden p-0"
+                                align="end"
+                                sideOffset={10}
+                              >
+                                <Calendar
+                                  mode="single"
+                                  selected={field.value}
+                                  captionLayout="dropdown"
+                                  month={calendarMonth}
+                                  onMonthChange={setCalendarMonth}
+                                  startMonth={new Date()}
+                                  endMonth={new Date(new Date().getFullYear() + 5, 11)}
+                                  onSelect={(date) => {
+                                    field.onChange(date)
+                                    setCalendarOpen(false)
+                                  }}
+                                />
+                              </PopoverContent>
+                            </Popover>
+                          </div>
                           <FormMessage />
                         </FormItem>
                       )}
@@ -455,7 +479,7 @@ export function TimelessWeddings({
                         <FormItem>
                           <FormLabel className="text-white/90">Where did you guys find me? *</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                            <SelectTrigger className="bg-white/10 border-white/20 text-white [&>span[data-placeholder]]:text-white/50">
                               <SelectValue placeholder="Select option" />
                             </SelectTrigger>
                             <SelectContent>

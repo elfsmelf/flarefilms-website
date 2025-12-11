@@ -3,7 +3,6 @@
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Calendar, ArrowRight } from "lucide-react"
 
 interface BlogPost {
   id: string
@@ -28,55 +27,63 @@ export function BlogCard({ post, index }: { post: BlogPost; index: number }) {
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="group"
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      className="group bg-white shadow-sm hover:shadow-xl transition-shadow duration-500"
     >
-      {/* Image */}
-      <Link href={`/blog/${post.slug}`} className="block relative overflow-hidden">
-        <div className="aspect-[4/3] relative overflow-hidden bg-gray-100">
+      <Link href={`/blog/${post.slug}`} className="block">
+        {/* Image */}
+        <div className="relative aspect-[16/10] overflow-hidden">
           <Image
             src={post.image || "/placeholder.svg"}
             alt={post.title}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
-          {/* Gradient overlay on image */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          {/* Category badge on image */}
+          <div className="absolute top-4 left-4">
+            <span className="bg-[#b8a862] px-3 py-1.5 font-sans text-[10px] uppercase tracking-[0.15em] text-[#24221d] font-medium">
+              {post.category}
+            </span>
+          </div>
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        </div>
+
+        {/* Content */}
+        <div className="p-6">
+          {/* Date */}
+          <span className="font-serif text-sm text-[#9B9589] italic">
+            {formattedDate}
+          </span>
+
+          {/* Title */}
+          <h2 className="font-cormorant text-2xl text-[#3d3a35] group-hover:text-[#b8a862] transition-colors duration-300 mt-3 mb-3 leading-tight line-clamp-2">
+            {post.title}
+          </h2>
+
+          {/* Excerpt */}
+          <p className="font-serif text-sm leading-relaxed text-[#7b756c] line-clamp-3 mb-5">
+            {post.excerpt}
+          </p>
+
+          {/* Read More Link */}
+          <span className="inline-flex items-center gap-2 text-xs font-sans uppercase tracking-[0.15em] text-[#5a534b] group-hover:text-[#b8a862] transition-all duration-300">
+            Read Article
+            <svg
+              width="20"
+              height="8"
+              viewBox="0 0 24 8"
+              fill="none"
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            >
+              <path
+                d="M23.3536 4.35355C23.5488 4.15829 23.5488 3.84171 23.3536 3.64645L20.1716 0.464466C19.9763 0.269204 19.6597 0.269204 19.4645 0.464466C19.2692 0.659728 19.2692 0.976311 19.4645 1.17157L22.2929 4L19.4645 6.82843C19.2692 7.02369 19.2692 7.34027 19.4645 7.53553C19.6597 7.7308 19.9763 7.7308 20.1716 7.53553L23.3536 4.35355ZM0 4.5H23V3.5H0V4.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
         </div>
       </Link>
-
-      {/* Content */}
-      <div className="p-8 flex-1 flex flex-col">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="flex items-center gap-2 text-[#7b756c]">
-            <Calendar size={14} />
-            <span className="font-serif text-sm">{formattedDate}</span>
-          </div>
-          <span className="text-[#7b756c]">•</span>
-          <span className="bg-white/95 backdrop-blur-sm px-3 py-1 font-sans text-xs uppercase tracking-[0.15em] text-[#b8a862]">
-            {post.category}
-          </span>
-        </div>
-
-        {/* Title */}
-        <h2 className="font-cormorant text-3xl md:text-4xl tracking-wide text-[#5a534b] group-hover:text-[#b8a862] transition-colors duration-300 mb-4 leading-tight">
-          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-        </h2>
-
-        {/* Excerpt */}
-        <p className="font-serif text-base leading-relaxed text-[#7b756c] mb-6 flex-1">{post.excerpt}</p>
-
-        <Link
-          href={`/blog/${post.slug}`}
-          className="inline-flex items-center gap-2 text-sm font-sans uppercase tracking-[0.15em] text-[#5a534b] hover:text-[#b8a862] transition-all duration-300 group/link mt-auto border-t border-[#e7e4df] pt-6"
-        >
-          <span className="relative">
-            Read More
-            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#b8a862] group-hover/link:w-full transition-all duration-300" />
-          </span>
-          <ArrowRight size={16} className="transition-transform group-hover/link:translate-x-2" />
-        </Link>
-      </div>
     </motion.article>
   )
 }
