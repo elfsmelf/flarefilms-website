@@ -152,6 +152,7 @@ export function Testimonial() {
               align: "center",
               loop: true,
               dragFree: false,
+              watchDrag: true,
             }}
             className="w-full"
           >
