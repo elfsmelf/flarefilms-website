@@ -69,6 +69,15 @@ export default function RootLayout({
         {/* Preconnect to external image CDN for faster loading */}
         <link rel="preconnect" href="https://assets.guestsnapper.com" />
         <link rel="dns-prefetch" href="https://assets.guestsnapper.com" />
+        {/* Preload LCP hero image for faster initial render */}
+        <link
+          rel="preload"
+          as="image"
+          href="https://assets.guestsnapper.com/cdn-cgi/image/width=750,quality=80,format=auto/wedding-gallery-media/jess%20and%20braydon%20featured%20image2.webp"
+          imageSrcSet="https://assets.guestsnapper.com/cdn-cgi/image/width=640,quality=80,format=auto/wedding-gallery-media/jess%20and%20braydon%20featured%20image2.webp 640w, https://assets.guestsnapper.com/cdn-cgi/image/width=750,quality=80,format=auto/wedding-gallery-media/jess%20and%20braydon%20featured%20image2.webp 750w, https://assets.guestsnapper.com/cdn-cgi/image/width=1080,quality=80,format=auto/wedding-gallery-media/jess%20and%20braydon%20featured%20image2.webp 1080w"
+          imageSizes="100vw"
+          fetchPriority="high"
+        />
       </head>
       <body
         className={`${ebGaramond.variable} ${cormorantGaramond.variable} ${questrial.variable} font-sans antialiased`}

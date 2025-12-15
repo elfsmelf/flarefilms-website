@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     title: "Wedding Videographer Brisbane | Flare Films",
     description: "Award-winning Brisbane wedding videographer capturing authentic, emotional wedding films",
     url: "https://flarefilms.com.au",
-    images: ['/images/2024/03/Jess-and-Braydan-21-scaled.jpg'],
+    images: ['https://assets.guestsnapper.com/wedding-gallery-media/Jess-and-Braydan-21-scaled.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
     title: "Wedding Videographer Brisbane | Flare Films",
     description: "Award-winning Brisbane wedding videographer capturing authentic, emotional wedding films",
-    images: ['/images/2024/03/Jess-and-Braydan-21-scaled.jpg'],
+    images: ['https://assets.guestsnapper.com/wedding-gallery-media/Jess-and-Braydan-21-scaled.jpg'],
   },
 }
 
