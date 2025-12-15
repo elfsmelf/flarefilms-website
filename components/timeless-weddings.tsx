@@ -239,7 +239,7 @@ export function TimelessWeddings({
                 <div className="flex-1">
                   <h3 className="font-serif text-lg md:text-xl text-white mb-1">Fill out the contact form</h3>
                   <p className="font-sans text-sm md:text-base text-white/80 leading-relaxed">
-                    Tell me everything! We don't mind a novel. You'll receive a FREE Wedding Planner & Checklist via email.
+                    Tell me everything! We don't mind a novel.
                   </p>
                 </div>
               </div>

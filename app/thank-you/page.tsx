@@ -19,7 +19,7 @@ export default function ThankYouPage() {
       <Header />
 
       {/* Thank You Section */}
-      <section className="min-h-[70vh] flex items-center justify-center px-6 py-24">
+      <section className="min-h-[70vh] flex items-center justify-center px-6 pt-32 pb-24">
         <div className="max-w-2xl text-center">
           <div className="mb-8">
             <span className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#b8a862]/20 text-[#b8a862]">
@@ -46,7 +46,6 @@ export default function ThankYouPage() {
 
           <p className="font-sans text-base md:text-lg text-white/70 leading-relaxed mb-8">
             I'll get back to you within 24 hours with availability and some full wedding galleries to check out.
-            In the meantime, check your inbox for your free Wedding Planner & Checklist!
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
