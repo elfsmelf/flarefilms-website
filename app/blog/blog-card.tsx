@@ -52,7 +52,7 @@ export function BlogCard({ post, index }: { post: BlogPost; index: number }) {
         {/* Content */}
         <div className="p-6">
           {/* Date */}
-          <span className="font-serif text-sm text-[#9B9589] italic">
+          <span className="font-sans text-sm text-[#9B9589] italic">
             {formattedDate}
           </span>
 
@@ -62,7 +62,7 @@ export function BlogCard({ post, index }: { post: BlogPost; index: number }) {
           </h2>
 
           {/* Excerpt */}
-          <p className="font-serif text-sm leading-relaxed text-[#7b756c] line-clamp-3 mb-5">
+          <p className="font-sans text-sm leading-relaxed text-[#7b756c] line-clamp-3 mb-5">
             {post.excerpt}
           </p>
 

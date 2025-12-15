@@ -59,7 +59,7 @@ export default async function BlogPage() {
           >
             Wedding Advice
           </h1>
-          <p className="font-serif text-base md:text-lg text-white/80 max-w-xl italic">
+          <p className="font-sans text-base md:text-lg text-white/80 max-w-xl italic">
             Tips, insights & inspiration for your perfect day
           </p>
         </div>
@@ -100,7 +100,7 @@ export default async function BlogPage() {
                     <span className="bg-[#b8a862] px-4 py-1.5 font-sans text-xs uppercase tracking-[0.15em] text-[#24221d]">
                       {featuredPost.category}
                     </span>
-                    <span className="font-serif text-sm text-[#9B9589]">
+                    <span className="font-sans text-sm text-[#9B9589]">
                       {new Date(featuredPost.date).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "long",
@@ -113,7 +113,7 @@ export default async function BlogPage() {
                     {featuredPost.title}
                   </h2>
 
-                  <p className="font-serif text-lg text-[#C7C5BF] leading-relaxed mb-8 line-clamp-3">
+                  <p className="font-sans text-lg text-[#C7C5BF] leading-relaxed mb-8 line-clamp-3">
                     {featuredPost.excerpt}
                   </p>
 
@@ -138,7 +138,7 @@ export default async function BlogPage() {
             <h2 className="font-cormorant text-4xl md:text-5xl tracking-wide text-[#5a534b] mb-4">
               All Articles
             </h2>
-            <p className="font-serif text-lg text-[#7b756c] max-w-2xl mx-auto">
+            <p className="font-sans text-lg text-[#7b756c] max-w-2xl mx-auto">
               Discover helpful tips and inspiration for your wedding day journey
             </p>
           </div>

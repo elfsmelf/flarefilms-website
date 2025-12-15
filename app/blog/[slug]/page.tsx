@@ -101,8 +101,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </section>
 
       {/* Article Content */}
-      <section className="bg-[#E7E4DF] py-16 md:py-24">
-        <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+      <section className="bg-[#E7E4DF] py-0 md:py-24">
+        <div className="max-w-[1400px] mx-auto px-0 md:px-12">
           <div className={`grid grid-cols-1 ${recommendedPosts.length > 0 ? "lg:grid-cols-12" : ""} gap-12 lg:gap-16`}>
             {/* Main Content */}
             <div className={recommendedPosts.length > 0 ? "lg:col-span-9" : "max-w-4xl mx-auto"}>

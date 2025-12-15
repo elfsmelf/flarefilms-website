@@ -28,7 +28,7 @@ export function SidebarWrapper({ children }: SidebarWrapperProps) {
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}>
         <Link
           href="/blog"
-          className="flex items-center justify-center gap-2 bg-[#5a534b] text-[#F5F3ED] px-6 py-4 text-sm font-serif uppercase tracking-wide hover:bg-[#b8a862] transition-colors duration-300 shadow-lg"
+          className="flex items-center justify-center gap-2 bg-[#5a534b] text-[#F5F3ED] px-6 py-4 text-sm font-sans uppercase tracking-wide hover:bg-[#b8a862] transition-colors duration-300 shadow-lg"
         >
           <ArrowRight size={16} className="rotate-180" />
           All Articles

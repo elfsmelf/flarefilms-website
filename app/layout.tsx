@@ -4,6 +4,7 @@ import { EB_Garamond, Cormorant_Garamond, Questrial } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { JsonLd } from "@/components/seo/JsonLd"
 import { generateOrganizationSchema } from "@/lib/seo/schema"
+import { SourcebusterProvider } from "@/components/sourcebuster-provider"
 import "./globals.css"
 
 const ebGaramond = EB_Garamond({
@@ -68,9 +69,11 @@ export default function RootLayout({
       <body
         className={`${ebGaramond.variable} ${cormorantGaramond.variable} ${questrial.variable} font-sans antialiased`}
       >
-        <JsonLd data={orgSchema} />
-        {children}
-        <Analytics />
+        <SourcebusterProvider>
+          <JsonLd data={orgSchema} />
+          {children}
+          <Analytics />
+        </SourcebusterProvider>
       </body>
     </html>
   )

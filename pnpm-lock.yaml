@@ -215,6 +215,9 @@ importers:
       sonner:
         specifier: ^1.7.4
         version: 1.7.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      sourcebuster:
+        specifier: ^1.1.0
+        version: 1.1.0
       tailwind-merge:
         specifier: ^3.3.1
         version: 3.4.0
@@ -3711,6 +3714,9 @@ packages:
   source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
+
+  sourcebuster@1.1.0:
+    resolution: {integrity: sha512-+A8MHjtnARAYsqd0OI+aXbgUa/p6mhmXHwGUu3TxdujqfVqS1mjSq+2fkctGDozoxrRSBb55WScJJtJ5YILxSQ==}
 
   strnum@2.1.1:
     resolution: {integrity: sha512-7ZvoFTiCnGxBtDqJ//Cu6fWtZtc7Y3x+QOirG15wztbdngGSkht27o2pyGWrVy0b4WAy3jbKmnoK6g5VlVNUUw==}
@@ -7595,6 +7601,8 @@ snapshots:
       source-map: 0.6.1
 
   source-map@0.6.1: {}
+
+  sourcebuster@1.1.0: {}
 
   strnum@2.1.1: {}
 

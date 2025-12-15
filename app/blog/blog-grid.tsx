@@ -76,7 +76,7 @@ export function BlogGrid({ posts, categories, allPosts }: BlogGridProps) {
             ))
           ) : (
             <div className="col-span-full text-center py-16">
-              <p className="font-serif text-lg text-[#7b756c]">
+              <p className="font-sans text-lg text-[#7b756c]">
                 No articles found in this category.
               </p>
             </div>

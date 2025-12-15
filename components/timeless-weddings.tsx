@@ -3,7 +3,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { useForm } from "react-hook-form"
-import { CalendarIcon } from "lucide-react"
+import { CalendarIcon, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Form, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { getSourcebusterData } from "@/components/sourcebuster-provider"
 
 type FormData = {
   firstName: string
@@ -43,6 +44,8 @@ export function TimelessWeddings({
 }: TimelessWeddingsProps = {}) {
   const [calendarOpen, setCalendarOpen] = useState(false)
   const [calendarMonth, setCalendarMonth] = useState<Date | undefined>(undefined)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
   const form = useForm<FormData>({
     defaultValues: {
@@ -68,9 +71,57 @@ export function TimelessWeddings({
     })
   }
 
-  function onSubmit(values: FormData) {
-    console.log(values)
-    // TODO: Handle form submission
+  async function onSubmit(values: FormData) {
+    setIsSubmitting(true)
+    setSubmitStatus("idle")
+
+    try {
+      // Get sourcebuster tracking data
+      const trackingData = getSourcebusterData()
+
+      // Prepare the payload
+      const payload = {
+        // Form data
+        firstName: values.firstName,
+        lastName: values.lastName,
+        partnerName: values.partnerName,
+        email: values.email,
+        contactNumber: values.contactNumber,
+        canCall: values.canCall,
+        weddingDate: values.weddingDate ? formatDate(values.weddingDate) : "",
+        weddingDetails: values.weddingDetails,
+        weddingLocation: values.weddingLocation,
+        foundUs: values.foundUs,
+
+        // Sourcebuster tracking data
+        ...trackingData,
+
+        // Additional metadata
+        submittedAt: new Date().toISOString(),
+        pageUrl: typeof window !== "undefined" ? window.location.href : "",
+      }
+
+      // Send to Make webhook
+      const response = await fetch("https://hook.us1.make.com/hd6yj2gtmr62jrk5i4sfn7k26e2sbwg2", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+
+      if (response.ok) {
+        setSubmitStatus("success")
+        form.reset()
+      } else {
+        setSubmitStatus("error")
+      }
+    } catch (error) {
+      console.error("Form submission error:", error)
+      setSubmitStatus("error")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -498,10 +549,32 @@ export function TimelessWeddings({
 
                     <Button
                       type="submit"
-                      className="w-full bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all duration-300"
+                      disabled={isSubmitting}
+                      className="w-full bg-white/10 hover:bg-white/20 text-white border border-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Submit
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        "Submit"
+                      )}
                     </Button>
+
+                    {/* Success Message */}
+                    {submitStatus === "success" && (
+                      <div className="mt-4 p-4 bg-green-500/20 border border-green-500/30 rounded text-green-300 text-center">
+                        Thank you! Your enquiry has been submitted successfully. We'll be in touch within 24 hours.
+                      </div>
+                    )}
+
+                    {/* Error Message */}
+                    {submitStatus === "error" && (
+                      <div className="mt-4 p-4 bg-red-500/20 border border-red-500/30 rounded text-red-300 text-center">
+                        Sorry, something went wrong. Please try again or email us directly.
+                      </div>
+                    )}
                   </form>
                 </Form>
               </motion.div>

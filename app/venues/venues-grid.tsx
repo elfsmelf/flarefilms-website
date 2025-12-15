@@ -86,7 +86,7 @@ export function VenuesGrid({ venues }: VenuesGridProps) {
             <p className="font-sans text-sm uppercase tracking-[0.3em] text-[#b8a862] max-w-[600px] mx-auto mb-8">
               Discover Queensland's Most Beautiful Wedding Locations
             </p>
-            <p className="text-base md:text-lg text-[#C7C5BF] font-serif leading-relaxed max-w-3xl mx-auto">
+            <p className="text-base md:text-lg text-[#C7C5BF] font-sans leading-relaxed max-w-3xl mx-auto">
               From sweeping river views to enchanting old Queenslanders, explore wedding venues across Brisbane, Gold Coast, Sunshine Coast, Byron Bay and beyond.
             </p>
           </div>
@@ -187,7 +187,7 @@ export function VenuesGrid({ venues }: VenuesGridProps) {
 
                         {/* Description */}
                         {venue.shortDescription && (
-                          <p className="font-serif text-sm text-[#C7C5BF] leading-relaxed line-clamp-2">
+                          <p className="font-sans text-sm text-[#C7C5BF] leading-relaxed line-clamp-2">
                             {venue.shortDescription}
                           </p>
                         )}

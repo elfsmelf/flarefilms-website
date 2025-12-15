@@ -29,14 +29,14 @@ export function RecommendedArticle({ post }: { post: RecommendedPost }) {
             className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
         </div>
-        <h3 className="font-serif text-lg text-[#5a534b] group-hover:text-[#b8a862] transition-colors duration-300 mb-3 leading-tight">
+        <h3 className="font-sans text-lg text-[#5a534b] group-hover:text-[#b8a862] transition-colors duration-300 mb-3 leading-tight">
           {post.title}
         </h3>
         <div className="flex items-center gap-2 text-[#7b756c] text-sm mb-4">
           <Calendar size={14} />
-          <span className="font-serif">{formattedDate}</span>
+          <span className="font-sans">{formattedDate}</span>
         </div>
-        <div className="inline-flex items-center gap-2 text-[#5a534b] text-sm font-serif uppercase tracking-wide group-hover:text-[#b8a862] transition-colors duration-300">
+        <div className="inline-flex items-center gap-2 text-[#5a534b] text-sm font-sans uppercase tracking-wide group-hover:text-[#b8a862] transition-colors duration-300">
           Read Article
           <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
         </div>
