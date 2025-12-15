@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { useForm } from "react-hook-form"
@@ -42,6 +43,7 @@ export function TimelessWeddings({
   imageAlt = "Couple portrait",
   className,
 }: TimelessWeddingsProps = {}) {
+  const router = useRouter()
   const [calendarOpen, setCalendarOpen] = useState(false)
   const [calendarMonth, setCalendarMonth] = useState<Date | undefined>(undefined)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -113,6 +115,7 @@ export function TimelessWeddings({
       if (response.ok) {
         setSubmitStatus("success")
         form.reset()
+        router.push("/thank-you")
       } else {
         setSubmitStatus("error")
       }
