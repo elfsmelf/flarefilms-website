@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     title: "Toowoomba Wedding Videographer | Flare Films",
     description: "Award-winning Toowoomba wedding videographer capturing story-driven, candid wedding films.",
     url: "https://flarefilms.com.au/toowoomba-wedding-videographer",
-    images: ['/images/2024/03/Jess-and-Braydan-21-scaled.jpg'],
+    images: ['https://assets.guestsnapper.com/wedding-gallery-media/Jess-and-Braydan-21-scaled.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
     title: "Toowoomba Wedding Videographer | Flare Films",
     description: "Award-winning Toowoomba wedding videographer capturing story-driven, candid wedding films.",
-    images: ['/images/2024/03/Jess-and-Braydan-21-scaled.jpg'],
+    images: ['https://assets.guestsnapper.com/wedding-gallery-media/Jess-and-Braydan-21-scaled.jpg'],
   },
 }
 
@@ -208,7 +208,7 @@ export default async function ToowoombaWeddingVideographerPage() {
               </div>
             </div>
             <div className="relative aspect-video">
-              <Image src="/images/2024/03/Jess-and-Braydan-21-scaled.jpg" alt="Toowoomba Wedding Venue" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+              <Image src="https://assets.guestsnapper.com/wedding-gallery-media/Jess-and-Braydan-21-scaled.jpg" alt="Toowoomba Wedding Venue" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
           </div>
         </div>
@@ -315,10 +315,10 @@ export default async function ToowoombaWeddingVideographerPage() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-wrap items-center justify-center gap-12">
             <span className="font-sans text-sm tracking-[0.15em] uppercase text-[#585858] mr-5">AS SEEN IN</span>
-            <Image src="/images/2020/10/easy-weddings-logo-3.png" alt="Easy Weddings" width={160} height={45} className="h-12 w-auto object-contain" />
-            <Image src="/images/2020/10/brides-logo-2.png" alt="Brides" width={140} height={55} className="h-12 w-auto object-contain" />
-            <Image src="/images/2020/10/modern-wedding-logo-1.png" alt="Modern Wedding" width={160} height={60} className="h-12 w-auto object-contain" />
-            <Image src="https://www.flarefilms.com.au/wp-content/uploads/2020/10/thebridestree_logo-1024x215.png" alt="The Bride's Tree" width={180} height={38} className="h-10 w-auto object-contain" />
+            <Image src="https://assets.guestsnapper.com/wedding-gallery-media/easy-weddings-logo-3.png" alt="Easy Weddings" width={160} height={45} className="h-12 w-auto object-contain" />
+            <Image src="https://assets.guestsnapper.com/wedding-gallery-media/brides-logo-2.png" alt="Brides" width={140} height={55} className="h-12 w-auto object-contain" />
+            <Image src="https://assets.guestsnapper.com/wedding-gallery-media/modern-wedding-logo-1.png" alt="Modern Wedding" width={160} height={60} className="h-12 w-auto object-contain" />
+            <Image src="https://assets.guestsnapper.com/wedding-gallery-media/thebridestree_logo-2.png" alt="The Bride's Tree" width={180} height={38} className="h-10 w-auto object-contain" />
           </div>
         </div>
       </section>

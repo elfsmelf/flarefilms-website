@@ -35,6 +35,10 @@ export const metadata: Metadata = {
     "Award-winning Brisbane wedding videographer capturing authentic, emotional wedding films across Queensland. Natural storytelling, cinematic quality.",
   keywords: ["wedding videographer", "Brisbane", "Queensland", "wedding films", "cinematic wedding videos"],
   authors: [{ name: "Richard Paynter" }],
+  icons: {
+    icon: '/cropped-Flare-Films-Icon.jpg',
+    apple: '/cropped-Flare-Films-Icon.jpg',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_AU',
@@ -42,13 +46,13 @@ export const metadata: Metadata = {
     siteName: 'Flare Films',
     title: 'Wedding Videographer Brisbane | Flare Films',
     description: 'Award-winning Brisbane wedding videographer',
-    images: ['/images/2024/03/Jess-and-Braydan-21-scaled.jpg'],
+    images: ['https://assets.guestsnapper.com/wedding-gallery-media/Jess-and-Braydan-21-scaled.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Wedding Videographer Brisbane | Flare Films',
     description: 'Award-winning Brisbane wedding videographer',
-    images: ['/images/2024/03/Jess-and-Braydan-21-scaled.jpg'],
+    images: ['https://assets.guestsnapper.com/wedding-gallery-media/Jess-and-Braydan-21-scaled.jpg'],
   },
 }
 

@@ -21,29 +21,29 @@ const FontStyles = () => (
 const LOGOS = [
   {
     name: "Easy Weddings",
-    src: "/images/2020/10/easy-weddings-logo-3.png",
+    src: "https://assets.guestsnapper.com/wedding-gallery-media/easy-weddings-logo-3.png",
     width: 147,
     height: 42,
   },
   {
     name: "Brides",
-    src: "/images/2020/10/brides-logo-2.png",
+    src: "https://assets.guestsnapper.com/wedding-gallery-media/brides-logo-2.png",
     width: 142,
     height: 60,
   },
   {
     name: "Modern Wedding",
-    src: "/images/2020/10/modern-wedding-logo-1.png",
+    src: "https://assets.guestsnapper.com/wedding-gallery-media/modern-wedding-logo-1.png",
     width: 142,
     height: 58,
   },
   {
     name: "The Bride's Tree",
-    src: "https://www.flarefilms.com.au/wp-content/uploads/2020/10/thebridestree_logo-1024x215.png",
+    src: "https://assets.guestsnapper.com/wedding-gallery-media/thebridestree_logo-2.png",
     width: 142,
     height: 30,
   },
-] as any[]
+] as const
 
 // @component: AwardsRecognition
 export const AwardsRecognition = () => {

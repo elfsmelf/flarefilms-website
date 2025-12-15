@@ -59,7 +59,7 @@ export function VenuePageClient({ venueData, slug, films = [] }: { venueData: Ve
       {/* Hero Section with Background Image */}
       <section className="relative h-[50vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <Image
-          src={venueData.images[0] || "/images/2021/01/forest-v2.jpg"}
+          src={venueData.images[0] || "https://assets.guestsnapper.com/wedding-gallery-media/forest-v2.jpg"}
           alt={venueData.name}
           fill
           className="object-cover"

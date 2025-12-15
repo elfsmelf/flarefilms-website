@@ -13,47 +13,47 @@ type CarouselItem = {
 const CAROUSEL_ITEMS: CarouselItem[] = [
   {
     id: 1,
-    image: "/images/2023/01/ben-and-sierra-35.jpg",
+    image: "https://assets.guestsnapper.com/wedding-gallery-media/ben-and-sierra-35.jpg",
     label: "Roma Street Parklands Wedding - Ben and Sierra",
   },
   {
     id: 2,
-    image: "/images/2023/01/lewis-and-kristen7.jpg",
+    image: "https://assets.guestsnapper.com/wedding-gallery-media/lewis-and-kristen7.jpg",
     label: "Factory 51 Wedding Film - Lewis and Kristen",
   },
   {
     id: 3,
-    image: "/images/2023/01/simone-and-ged-24.jpg",
+    image: "https://assets.guestsnapper.com/wedding-gallery-media/simone-and-ged-24.jpg",
     label: "Bunnyconnellen Wedding Film - Simone and Ged",
   },
   {
     id: 4,
-    image: "/images/2023/01/brianna-and-jaelen-12.jpg",
+    image: "https://assets.guestsnapper.com/wedding-gallery-media/brianna-and-jaelen-12.jpg",
     label: "Burleigh Heads Surf Club - Brianna and Jaelen Wedding Film",
   },
   {
     id: 5,
-    image: "/images/2023/01/matt-and-rebecca28.jpg",
+    image: "https://assets.guestsnapper.com/wedding-gallery-media/matt-and-rebecca28.jpg",
     label: "Riverlife Wedding Venue - Matt and Rebecca",
   },
   {
     id: 6,
-    image: "/images/2023/01/vlcsnap-2023-01-15-11h18m06s749.jpg",
+    image: "https://assets.guestsnapper.com/wedding-gallery-media/vlcsnap-2023-01-15-11h18m06s749.jpg",
     label: "Brisbane Marriot Hotel Wedding - Dasuni and Luke",
   },
   {
     id: 7,
-    image: "/images/2023/01/brianna-and-jaelen-9.jpg",
+    image: "https://assets.guestsnapper.com/wedding-gallery-media/brianna-and-jaelen-9.jpg",
     label: "Burleigh Heads Surf Club - Brianna and Jaelen Wedding Film",
   },
   {
     id: 8,
-    image: "/images/2023/01/stef-and-dermott-32.jpg",
+    image: "https://assets.guestsnapper.com/wedding-gallery-media/stef-and-dermott-32.jpg",
     label: "Brisbane Botanic Gardens Wedding Film - Stefanie and Dermott",
   },
   {
     id: 9,
-    image: "/images/2023/01/jon-and-tiffanie7.jpg",
+    image: "https://assets.guestsnapper.com/wedding-gallery-media/jon-and-tiffanie7.jpg",
     label: "Sunshine Coast Hinterland Wedding - Jon and Tiffanie",
   },
 ]
