@@ -5,8 +5,11 @@ import sbjs from "sourcebuster"
 
 export function SourcebusterProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    // Get the current domain dynamically for cookie storage
+    const currentDomain = typeof window !== "undefined" ? window.location.hostname : "flarefilms.com.au"
+
     sbjs.init({
-      domain: "flarefilms.com.au",
+      domain: currentDomain,
       lifetime: 6,
       session_length: 30,
       referrals: [

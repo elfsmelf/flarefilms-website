@@ -1,6 +1,7 @@
 "use client"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 
 // Font import helper
 const GoogleFonts = () => (
@@ -70,12 +71,13 @@ export const WeddingCTASection = () => {
               }}
               className="w-full md:w-1/2 z-10"
             >
-              <div className="relative pr-0 md:pr-10 w-full text-center md:text-right">
-                <img
+              <div className="relative pr-0 md:pr-10 w-full h-[400px] md:h-[554px]">
+                <Image
                   src="https://www.flarefilms.com.au/wp-content/uploads/2022/08/vlcsnap-2022-08-26-111h49m50s761-gigapixel-standard-scale-4_00x-819x1024.jpg"
                   alt="Wedding moment"
-                  className="inline-block max-w-full h-auto md:h-[554px] object-cover align-middle shadow-sm"
-                  loading="lazy"
+                  fill
+                  className="object-cover shadow-sm"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
             </motion.div>

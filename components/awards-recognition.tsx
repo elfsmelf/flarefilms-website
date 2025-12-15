@@ -1,5 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 // Font imports to match the original design exactly
 const FontStyles = () => (
@@ -145,13 +146,12 @@ export const AwardsRecognition = () => {
                 }}
                 className="flex items-center justify-center p-2"
               >
-                <img
+                <Image
                   src={logo.src}
                   alt={`${logo.name} logo`}
                   width={logo.width}
                   height={logo.height}
                   className="max-w-[150px] md:max-w-[160px] max-h-[60px] w-auto h-auto object-contain transition-opacity duration-300 hover:opacity-80"
-                  loading="lazy"
                 />
               </motion.div>
             ))}

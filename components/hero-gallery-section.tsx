@@ -2,6 +2,7 @@
 
 import { useRef } from "react"
 import { motion, useScroll, useTransform, useSpring } from "framer-motion"
+import Image from "next/image"
 
 type HeroGallerySectionProps = {
   title?: string
@@ -84,10 +85,12 @@ export const HeroGallerySection = ({
               variants={fadeIn}
               className="relative w-full aspect-[3/2] lg:w-[110%] lg:-mr-[10%]"
             >
-              <img
+              <Image
                 src={images.leftLandscape || "/placeholder.svg"}
                 alt="Couple running"
-                className="w-full h-full object-cover shadow-2xl"
+                fill
+                className="object-cover shadow-2xl"
+                sizes="(max-width: 1024px) 100vw, 40vw"
               />
               <div className="absolute inset-0 bg-black/10 transition-opacity hover:bg-black/0" />
             </motion.div>
@@ -106,11 +109,15 @@ export const HeroGallerySection = ({
               variants={fadeIn}
               className="relative w-full max-w-md lg:max-w-full aspect-[2/3] p-[10px] bg-[#302d26] shadow-2xl z-10"
             >
-              <img
-                src={images.centerTall || "/placeholder.svg"}
-                alt="Bride portrait"
-                className="w-full h-full object-cover block"
-              />
+              <div className="relative w-full h-full">
+                <Image
+                  src={images.centerTall || "/placeholder.svg"}
+                  alt="Bride portrait"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                />
+              </div>
             </motion.div>
 
             <motion.div
@@ -121,10 +128,12 @@ export const HeroGallerySection = ({
               variants={fadeIn}
               className="relative w-[85%] aspect-[4/5] z-0 -mt-8 lg:mt-8 shadow-xl"
             >
-              <img
+              <Image
                 src={images.centerPortrait || "/placeholder.svg"}
                 alt="Portrait detail"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 85vw, (max-width: 1024px) 42vw, 28vw"
               />
             </motion.div>
           </motion.div>
@@ -155,11 +164,15 @@ export const HeroGallerySection = ({
               variants={fadeIn}
               className="relative w-full aspect-[16/10] p-[10px] bg-[#302d26] shadow-2xl lg:-ml-[10%] lg:w-[110%]"
             >
-              <img
-                src={images.rightLandscape || "/placeholder.svg"}
-                alt="Romantic moment"
-                className="w-full h-full object-cover block"
-              />
+              <div className="relative w-full h-full">
+                <Image
+                  src={images.rightLandscape || "/placeholder.svg"}
+                  alt="Romantic moment"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                />
+              </div>
             </motion.div>
           </motion.div>
         </div>

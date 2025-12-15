@@ -1,6 +1,7 @@
 "use client"
 import { useState, useCallback, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import {
   Carousel,
@@ -170,10 +171,12 @@ export function Testimonial() {
 
                     {/* Center Section: Image */}
                     <div className="w-full md:w-[40%] lg:w-[380px] flex-shrink-0 relative order-2 md:order-2 h-[400px] md:h-[500px] lg:h-[579px]">
-                      <img
+                      <Image
                         src={testimonial.image || "/placeholder.svg"}
                         alt={testimonial.title}
-                        className="w-full h-full object-cover object-center shadow-md cursor-grab active:cursor-grabbing"
+                        fill
+                        className="object-cover object-center shadow-md cursor-grab active:cursor-grabbing"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 40vw, 380px"
                         draggable={false}
                       />
                     </div>

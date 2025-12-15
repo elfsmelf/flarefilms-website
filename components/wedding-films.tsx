@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 // Assets
 const BG_VECTOR_URL = "https://shared-pw-fonts.s3.us-west-2.amazonaws.com/pw-icons-theme-8/info-b-vector.svg"
@@ -76,10 +77,12 @@ export function WeddingFilms() {
           <div className="relative z-10 px-6 sm:px-12 lg:px-8">
             {/* The Image Wrapper */}
             <div className="relative aspect-[3/4] w-full overflow-hidden shadow-sm">
-              <img
+              <Image
                 src={IMAGE_URL || "/placeholder.svg"}
                 alt="Photographer Portrait"
-                className="h-full w-full object-cover object-center"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 45vw"
               />
             </div>
           </div>

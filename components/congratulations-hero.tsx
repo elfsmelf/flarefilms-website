@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export const CongratulationsHero = () => {
   return (
     <section className="relative w-full bg-[#24221d] text-white overflow-hidden selection:bg-orange-900/30 selection:text-white">
@@ -31,10 +33,12 @@ export const CongratulationsHero = () => {
 
             {/* Image Wrapper */}
             <div className="relative z-10 w-full h-[500px] md:h-[695px]">
-              <img
+              <Image
                 src="https://assets.guestsnapper.com/wedding-gallery-media/laura-celebration.webp"
                 alt="Couple celebrating outdoors, walking away hand in hand"
-                className="w-full h-full object-cover shadow-2xl"
+                fill
+                className="object-cover shadow-2xl"
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 style={{
                   objectPosition: "50% 50%",
                 }}

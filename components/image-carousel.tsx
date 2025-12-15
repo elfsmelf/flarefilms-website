@@ -2,6 +2,7 @@
 
 import { useEffect } from "react"
 import useEmblaCarousel from "embla-carousel-react"
+import Image from "next/image"
 
 type CarouselItem = {
   id: number
@@ -81,18 +82,12 @@ export const ImageCarousel = () => {
                 className="block relative h-[240px] w-full overflow-hidden cursor-pointer select-none transition-transform hover:opacity-90 active:scale-[0.98]"
                 aria-label={item.label}
               >
-                <div className="absolute inset-0 bg-gray-100 animate-pulse" />
-                <img
+                <Image
                   src={item.image || "/placeholder.svg"}
                   alt={item.label}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                  loading="lazy"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.style.display = "none"
-                    target.parentElement!.classList.add("bg-gray-200")
-                    target.parentElement!.innerHTML = `<div class="flex items-center justify-center h-full text-gray-400 text-xs text-center p-2">${item.label}</div>`
-                  }}
+                  fill
+                  className="object-cover transition-transform duration-500 hover:scale-105"
+                  sizes="(max-width: 768px) 33vw, 11vw"
                 />
                 <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300" />
               </a>

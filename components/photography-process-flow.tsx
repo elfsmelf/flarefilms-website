@@ -2,6 +2,7 @@
 
 import React from "react"
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 type ProcessStep = {
   id: string
@@ -97,11 +98,12 @@ export const PhotographyProcessFlow = () => {
               variants={imageReveal}
               className="relative w-full aspect-[2/3] lg:aspect-auto lg:h-[930px] overflow-hidden bg-black/20"
             >
-              <img
+              <Image
                 src="https://assets.guestsnapper.com/wedding-gallery-media/richard-photo-5.webp"
                 alt="Richard Portrait"
-                className="w-full h-full object-cover"
-                loading="lazy"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 40vw"
               />
               <div className="absolute inset-0 bg-black/0 transition-colors duration-500 hover:bg-black/10" />
             </motion.div>

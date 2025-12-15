@@ -14,6 +14,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { getSourcebusterData } from "@/components/sourcebuster-provider"
+import { YouTubeFacade } from "@/components/youtube-facade"
+import Image from "next/image"
 
 type FormData = {
   firstName: string
@@ -131,10 +133,13 @@ export function TimelessWeddings({
     <section id="contact" className={cn("relative w-full overflow-hidden bg-[#24221D] py-24 md:py-32 lg:py-40", className)}>
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-        <img
+        <Image
           src="https://assets.guestsnapper.com/wedding-gallery-media/ben-and-sierra-landscape.webp"
           alt="Background"
-          className="w-full h-full object-cover opacity-20"
+          fill
+          className="object-cover opacity-20"
+          sizes="100vw"
+          priority={false}
         />
         <div className="absolute inset-0 bg-[#24221D]/80" />
       </div>
@@ -212,12 +217,9 @@ export function TimelessWeddings({
               }}
               className="relative z-10 w-full overflow-hidden bg-gray-800 aspect-video"
             >
-              <iframe
-                src="https://www.youtube.com/embed/IYCMGWjvP_Q"
+              <YouTubeFacade
+                videoId="IYCMGWjvP_Q"
                 title="Flare Films Wedding Videography"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="h-full w-full"
               />
             </motion.div>
 
