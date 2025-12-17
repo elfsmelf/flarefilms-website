@@ -55,9 +55,6 @@ function VideoCard({ film, index }: VideoCardProps) {
 
         {/* Content Area */}
         <div className="px-4">
-          {/* Number */}
-          <span className="font-sans italic text-base md:text-lg text-[#b6b1a4] block mb-3">no.{index + 1}</span>
-
           {/* Couple Name */}
           <h3 className="font-cormorant text-3xl md:text-4xl lg:text-6xl tracking-widest mb-3 uppercase text-[#5A534B]">
             {film.title}

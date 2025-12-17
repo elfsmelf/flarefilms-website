@@ -73,7 +73,7 @@ export const WeddingCTASection = () => {
             >
               <div className="relative pr-0 md:pr-10 w-full h-[400px] md:h-[554px]">
                 <Image
-                  src="https://www.flarefilms.com.au/wp-content/uploads/2022/08/vlcsnap-2022-08-26-111h49m50s761-gigapixel-standard-scale-4_00x-819x1024.jpg"
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/lets-get-in-contact.jpg"
                   alt="Wedding moment"
                   fill
                   className="object-cover shadow-sm"

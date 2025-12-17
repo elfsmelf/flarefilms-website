@@ -99,7 +99,7 @@ export const PhotographyProcessFlow = () => {
               className="relative w-full aspect-[2/3] lg:aspect-auto lg:h-[930px] overflow-hidden bg-black/20"
             >
               <Image
-                src="https://assets.guestsnapper.com/wedding-gallery-media/richard-photo-5.webp"
+                src="https://assets.guestsnapper.com/wedding-gallery-media/richard.webp"
                 alt="Richard Portrait"
                 fill
                 className="object-cover"

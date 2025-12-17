@@ -12,7 +12,7 @@ export function PricingSection() {
 
       <div className="w-full bg-[#E7E4DF] flex justify-center pt-12 pb-20 px-6">
         <motion.a
-          href="#"
+          href="/pricing"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

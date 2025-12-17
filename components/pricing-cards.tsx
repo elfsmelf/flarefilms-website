@@ -77,17 +77,11 @@ export const ServicePricingCards = () => {
                 {/* Image Container */}
                 <div className="w-full relative group cursor-pointer">
                   <div className="overflow-hidden w-full">
-                    <motion.img
+                    <img
                       src={tier.image}
                       alt={`${tier.title} Photography Package`}
-                      className="w-full h-auto object-cover block transition-opacity duration-300"
+                      className="w-full h-auto object-cover block transition-transform duration-400 group-hover:scale-[1.02]"
                       loading="lazy"
-                      whileHover={{
-                        scale: 1.02,
-                      }}
-                      transition={{
-                        duration: 0.4,
-                      }}
                     />
                   </div>
                   {/* Tint overlay simulated from original CSS */}

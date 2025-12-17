@@ -188,7 +188,7 @@ export default async function NoosaWeddingVideographerPage() {
             <div className="relative">
               <div className="relative aspect-[3/4] w-full overflow-hidden">
                 <Image
-                  src="https://assets.guestsnapper.com/wedding-gallery-media/richard-photo-5.webp"
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/richard.webp"
                   alt="Richard Paynter - Noosa Wedding Videographer"
                   fill
                   className="object-cover"

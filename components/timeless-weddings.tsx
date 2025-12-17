@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { useForm } from "react-hook-form"
 import { CalendarIcon, Loader2 } from "lucide-react"
+import { usePlausible } from "next-plausible"
 import { Button } from "@/components/ui/button"
 import { Form, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -46,6 +47,7 @@ export function TimelessWeddings({
   className,
 }: TimelessWeddingsProps = {}) {
   const router = useRouter()
+  const plausible = usePlausible()
   const [calendarOpen, setCalendarOpen] = useState(false)
   const [calendarMonth, setCalendarMonth] = useState<Date | undefined>(undefined)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -116,6 +118,13 @@ export function TimelessWeddings({
 
       if (response.ok) {
         setSubmitStatus("success")
+        // Track form submission in Plausible
+        plausible("contact_form_submitted", {
+          props: {
+            location: values.weddingLocation,
+            source: values.foundUs,
+          },
+        })
         form.reset()
         router.push("/thank-you")
       } else {

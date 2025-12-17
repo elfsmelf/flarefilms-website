@@ -54,7 +54,7 @@ export const HeroGallerySection = ({
   return (
     <div
       ref={containerRef}
-      className="relative w-full min-h-screen bg-[#24221d] text-white overflow-hidden py-24 px-4 sm:px-8 flex items-center justify-center font-sans"
+      className="relative w-full min-h-screen bg-[#24221d] text-white overflow-hidden py-24 px-4 sm:px-8 hidden lg:flex items-center justify-center font-sans"
     >
       <div className="w-full max-w-[1400px] mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-start">

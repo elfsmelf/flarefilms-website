@@ -18,7 +18,7 @@ export function MeetRichard() {
             className="relative aspect-[4/5] w-full max-w-md mx-auto lg:mx-0"
           >
             <Image
-              src="https://assets.guestsnapper.com/wedding-gallery-media/richard-photo-5.webp"
+              src="https://assets.guestsnapper.com/wedding-gallery-media/richard.webp"
               alt="Richard - Brisbane Wedding Videographer"
               fill
               className="object-cover"

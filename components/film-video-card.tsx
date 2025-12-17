@@ -56,9 +56,6 @@ export function FilmVideoCard({ slug, title, location, tagline, image, index }: 
 
         {/* Content Area */}
         <div className="px-4">
-          {/* Number */}
-          <span className="font-serif italic text-lg text-[#b8a862] block mb-3">no.{index + 1}</span>
-
           {/* Title */}
           <h3 className="font-cormorant text-3xl md:text-4xl lg:text-5xl tracking-widest mb-3 uppercase text-[#F5F3ED]">
             {title}

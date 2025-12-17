@@ -1,6 +1,7 @@
 "use client"
-import { motion } from "framer-motion"
 import Image from "next/image"
+import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
 
 type PricingPackage = {
   id: string
@@ -69,6 +70,12 @@ const packages: PricingPackage[] = [
 ]
 
 export const PricingCards = () => {
+  const [hasMounted, setHasMounted] = useState(false)
+
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
   return (
     <div className="w-full bg-[#24221d] text-white py-24 md:py-32 px-4">
       <div className="max-w-7xl mx-auto">
@@ -76,13 +83,14 @@ export const PricingCards = () => {
           {packages.map((pkg, index) => (
             <motion.div
               key={pkg.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              viewport={{ once: true }}
-              className={`flex flex-col group rounded-lg overflow-hidden border transition-all duration-300 ${
+              initial={hasMounted ? { opacity: 0, y: 20 } : false}
+              whileInView={hasMounted ? { opacity: 1, y: 0 } : undefined}
+              animate={!hasMounted ? { opacity: 1, y: 0 } : undefined}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.15, ease: "easeOut" }}
+              className={`flex flex-col group rounded-lg overflow-hidden border transition-colors duration-300 ${
                 pkg.popular
-                  ? "border-[#b8a862] ring-2 ring-[#b8a862]/20 scale-105"
+                  ? "border-[#b8a862] ring-2 ring-[#b8a862]/20 md:scale-105"
                   : "border-[#b8a862]/20 hover:border-[#b8a862]/40"
               }`}
             >

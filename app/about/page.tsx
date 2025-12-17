@@ -90,7 +90,7 @@ export default function AboutPage() {
             >
               <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
-                  src="https://assets.guestsnapper.com/wedding-gallery-media/richard%20with%20couple.webp"
+                  src="https://assets.guestsnapper.com/wedding-gallery-media/richard%20bts2.webp"
                   alt="Richard with couple"
                   fill
                   className="object-cover"

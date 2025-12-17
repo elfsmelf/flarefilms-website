@@ -49,7 +49,7 @@ export const CongratulationsHero = () => {
 
         {/* Text Column */}
         <div className="w-full lg:w-1/2 max-w-[600px] lg:pl-12 text-center lg:text-left relative z-20">
-          <h2 className="text-4xl md:text-5xl lg:text-[48px] font-serif font-light leading-[1.1] mb-8 lg:mb-12 tracking-wide text-white/95">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-serif font-light leading-[1.1] mb-8 lg:mb-12 tracking-wide text-white/95">
             CONGRATULATIONS!
           </h2>
 
