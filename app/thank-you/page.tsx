@@ -45,7 +45,7 @@ export default function ThankYouPage() {
           </p>
 
           <p className="font-sans text-base md:text-lg text-white/70 leading-relaxed mb-8">
-            I'll get back to you within 24 hours with availability and some full wedding galleries to check out.
+            I will be in contact with you ASAP.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
