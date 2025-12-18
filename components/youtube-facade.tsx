@@ -4,21 +4,46 @@ import { useState } from "react"
 import Image from "next/image"
 
 interface YouTubeFacadeProps {
-  videoId: string
+  videoId?: string
+  videoUrl?: string
   title: string
   className?: string
 }
 
-export function YouTubeFacade({ videoId, title, className = "" }: YouTubeFacadeProps) {
+// Extract video ID from various YouTube URL formats
+function extractVideoId(url: string): string | null {
+  // Handle embed URLs: https://www.youtube.com/embed/VIDEO_ID
+  const embedMatch = url.match(/youtube\.com\/embed\/([^?&]+)/)
+  if (embedMatch) return embedMatch[1]
+
+  // Handle watch URLs: https://www.youtube.com/watch?v=VIDEO_ID
+  const watchMatch = url.match(/youtube\.com\/watch\?v=([^&]+)/)
+  if (watchMatch) return watchMatch[1]
+
+  // Handle short URLs: https://youtu.be/VIDEO_ID
+  const shortMatch = url.match(/youtu\.be\/([^?&]+)/)
+  if (shortMatch) return shortMatch[1]
+
+  return null
+}
+
+export function YouTubeFacade({ videoId, videoUrl, title, className = "" }: YouTubeFacadeProps) {
   const [isLoaded, setIsLoaded] = useState(false)
 
+  // Get video ID from either prop
+  const resolvedVideoId = videoId || (videoUrl ? extractVideoId(videoUrl) : null)
+
+  if (!resolvedVideoId) {
+    return null
+  }
+
   // Use maxresdefault for high quality, fall back to hqdefault
-  const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`
+  const thumbnailUrl = `https://i.ytimg.com/vi/${resolvedVideoId}/maxresdefault.jpg`
 
   if (isLoaded) {
     return (
       <iframe
-        src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+        src={`https://www.youtube.com/embed/${resolvedVideoId}?autoplay=1`}
         title={title}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
@@ -45,7 +70,7 @@ export function YouTubeFacade({ videoId, title, className = "" }: YouTubeFacadeP
       />
 
       {/* Play Button Overlay */}
-      <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors duration-300">
+      <div className="absolute inset-0 flex items-center justify-center group-hover:bg-black/10 transition-colors duration-300">
         <div className="w-16 h-16 md:w-20 md:h-20 bg-red-600 rounded-full flex items-center justify-center group-hover:bg-red-700 transition-colors duration-300 shadow-lg">
           <svg
             className="w-7 h-7 md:w-8 md:h-8 text-white ml-1"

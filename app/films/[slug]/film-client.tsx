@@ -3,6 +3,7 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ImageCarousel } from "@/components/image-carousel"
+import { YouTubeFacade } from "@/components/youtube-facade"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
@@ -72,15 +73,9 @@ export function FilmClient({ film, recommendedFilms }: FilmClientProps) {
               transition={{ duration: 0.8, delay: 0.3 }}
             >
               <div className="aspect-video w-full bg-black overflow-hidden shadow-2xl">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src={film.videoUrl}
-                  title="Wedding Film"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full"
+                <YouTubeFacade
+                  videoUrl={film.videoUrl}
+                  title={`${film.title} Wedding Film`}
                 />
               </div>
             </motion.div>
@@ -244,15 +239,9 @@ export function FilmClient({ film, recommendedFilms }: FilmClientProps) {
                 A Preview of the Big Day
               </p>
               <div className="aspect-video w-full bg-black overflow-hidden shadow-2xl">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src={film.trailerUrl}
-                  title="Wedding Trailer"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full"
+                <YouTubeFacade
+                  videoUrl={film.trailerUrl}
+                  title={`${film.title} Wedding Trailer`}
                 />
               </div>
             </motion.div>

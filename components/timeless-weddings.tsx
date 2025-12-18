@@ -66,6 +66,7 @@ export function TimelessWeddings({
       weddingLocation: "",
       foundUs: "",
     },
+    mode: "onBlur",
   })
 
   function formatDate(date: Date | undefined) {
@@ -324,6 +325,7 @@ export function TimelessWeddings({
                       <FormField
                         control={form.control}
                         name="firstName"
+                        rules={{ required: "First name is required" }}
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-white/90">My first name is *</FormLabel>
@@ -344,6 +346,7 @@ export function TimelessWeddings({
                       <FormField
                         control={form.control}
                         name="lastName"
+                        rules={{ required: "Last name is required" }}
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-white/90">My last name is *</FormLabel>
@@ -365,6 +368,7 @@ export function TimelessWeddings({
                     <FormField
                       control={form.control}
                       name="partnerName"
+                      rules={{ required: "Partner's name is required" }}
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-white/90">My partners name is *</FormLabel>
@@ -385,6 +389,13 @@ export function TimelessWeddings({
                     <FormField
                       control={form.control}
                       name="email"
+                      rules={{
+                        required: "Email is required",
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                          message: "Please enter a valid email address",
+                        },
+                      }}
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-white/90">Our best email address is *</FormLabel>
@@ -406,6 +417,7 @@ export function TimelessWeddings({
                     <FormField
                       control={form.control}
                       name="contactNumber"
+                      rules={{ required: "Contact number is required" }}
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-white/90">Our best contact number is *</FormLabel>
@@ -427,6 +439,7 @@ export function TimelessWeddings({
                     <FormField
                       control={form.control}
                       name="canCall"
+                      rules={{ required: "Please select an option" }}
                       render={({ field }) => (
                         <FormItem className="space-y-3">
                           <FormLabel className="text-white/90">Can I give you a call? *</FormLabel>
@@ -452,6 +465,7 @@ export function TimelessWeddings({
                     <FormField
                       control={form.control}
                       name="weddingDate"
+                      rules={{ required: "Wedding date is required" }}
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-white/90">Our wedding date is on *</FormLabel>
@@ -502,6 +516,7 @@ export function TimelessWeddings({
                     <FormField
                       control={form.control}
                       name="weddingDetails"
+                      rules={{ required: "Please tell us about your wedding" }}
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-white/90">Tell me a little more about your wedding! *</FormLabel>
@@ -520,6 +535,7 @@ export function TimelessWeddings({
                     <FormField
                       control={form.control}
                       name="weddingLocation"
+                      rules={{ required: "Wedding location is required" }}
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-white/90">Wedding location *</FormLabel>
@@ -540,6 +556,7 @@ export function TimelessWeddings({
                     <FormField
                       control={form.control}
                       name="foundUs"
+                      rules={{ required: "Please select how you found us" }}
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="text-white/90">Where did you guys find me? *</FormLabel>

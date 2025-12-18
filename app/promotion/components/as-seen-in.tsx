@@ -19,28 +19,28 @@ export function AsSeenIn() {
           </span>
 
           <Image
-            src="/images/2020/10/easy-weddings-logo-3.png"
+            src="https://assets.guestsnapper.com/wedding-gallery-media/easy-weddings-logo-3.png"
             alt="Easy Weddings"
             width={160}
             height={45}
             className="h-10 md:h-12 w-auto object-contain"
           />
           <Image
-            src="/images/2020/10/brides-logo-2.png"
+            src="https://assets.guestsnapper.com/wedding-gallery-media/brides-logo-2.png"
             alt="Brides"
             width={140}
             height={55}
             className="h-10 md:h-12 w-auto object-contain"
           />
           <Image
-            src="/images/2020/10/modern-wedding-logo-1.png"
+            src="https://assets.guestsnapper.com/wedding-gallery-media/modern-wedding-logo-1.png"
             alt="Modern Wedding"
             width={160}
             height={60}
             className="h-10 md:h-12 w-auto object-contain"
           />
           <Image
-            src="https://www.flarefilms.com.au/wp-content/uploads/2020/10/thebridestree_logo-1024x215.png"
+            src="https://assets.guestsnapper.com/wedding-gallery-media/thebridestree_logo-2.png"
             alt="The Bride's Tree"
             width={180}
             height={38}
