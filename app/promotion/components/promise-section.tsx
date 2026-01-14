@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Clock, User, Film, Heart, DollarSign, MessageCircle } from "lucide-react"
+import { Clock, User, Film, Heart, MessageCircle } from "lucide-react"
 
 const features = [
   {
@@ -24,11 +24,6 @@ const features = [
     icon: Heart,
     title: "Real Moments. Not Slideshows.",
     description: "I'm not interested in slow-motion confetti and generic music. Your film should feel like your day actually felt — the emotions, the laughter, the tears.",
-  },
-  {
-    icon: DollarSign,
-    title: "Full Pricing Upfront",
-    description: "No awkward sales calls. No hidden fees. You'll see exactly what everything costs before we even speak.",
   },
   {
     icon: MessageCircle,

@@ -15,8 +15,8 @@ export function PromotionHero() {
     <section className="relative min-h-screen flex flex-col">
       {/* Announcement Bar */}
       <div className="bg-[#b8a862] text-white py-3 px-4 text-center z-20 relative">
-        <p className="text-sm md:text-base font-sans tracking-wide uppercase">
-          Limited Dates For 2026 & 2027
+        <p className="text-base md:text-lg lg:text-xl font-sans tracking-wide uppercase">
+          Now booking the final 10 wedding spots for 2026. Once these dates are gone, that's it.
         </p>
       </div>
 
@@ -48,29 +48,23 @@ export function PromotionHero() {
             Brisbane · Gold Coast · Sunshine Coast
           </motion.p>
 
+          {/* Subheading */}
+          <motion.p
+            {...fadeIn}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="font-cormorant italic text-xl md:text-2xl lg:text-3xl mb-6 max-w-3xl mx-auto"
+          >
+            Real moments. Not cookie-cutter slideshows.
+          </motion.p>
+
           {/* Main Headline */}
           <motion.h1
             {...fadeIn}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="font-cormorant text-4xl md:text-5xl lg:text-7xl leading-tight mb-8 uppercase tracking-wide"
-          >
-            Your Wedding Film In{" "}
-            <span className="text-[#b8a862]">4 Weeks</span>
-            <br />
-            — Or $1,000 Back
-          </motion.h1>
-
-          {/* Subheadline */}
-          <motion.p
-            {...fadeIn}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="font-cormorant italic text-xl md:text-2xl lg:text-3xl mb-10 max-w-3xl mx-auto leading-relaxed"
+            className="font-cormorant text-4xl md:text-5xl lg:text-7xl leading-tight mb-10 uppercase tracking-wide"
           >
-            <span className="underline underline-offset-4">Real moments</span>. Not cookie-cutter slideshows.{" "}
-            <br className="hidden md:block" />
-            Wedding films that actually{" "}
-            <span className="underline underline-offset-4">feel like your day</span>.
-          </motion.p>
+            Wedding films that actually feel like your day.
+          </motion.h1>
 
           {/* Checkmarks */}
           <motion.div
@@ -81,7 +75,7 @@ export function PromotionHero() {
             {[
               "4-week delivery guaranteed",
               "120+ weddings filmed across SEQ",
-              "Full pricing upfront — no surprises",
+              "Starting at $2,800",
             ].map((item, index) => (
               <div key={index} className="flex items-center gap-3">
                 <Check className="w-6 h-6 text-[#b8a862]" strokeWidth={3} />

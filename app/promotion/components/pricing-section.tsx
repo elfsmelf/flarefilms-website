@@ -80,7 +80,7 @@ export function PricingSection() {
           className="text-center mb-16"
         >
           <h2 className="font-cormorant text-3xl md:text-4xl lg:text-5xl text-white uppercase tracking-wide">
-            Transparent Pricing. No Surprises.
+            Packages Starting at $2,800
           </h2>
         </motion.div>
 
@@ -118,12 +118,9 @@ export function PricingSection() {
               {/* Content */}
               <div className="flex flex-col flex-grow bg-[#302d26] p-6 md:p-8">
                 <div className="text-center mb-6">
-                  <h3 className="font-cormorant text-2xl md:text-3xl text-white mb-2">
+                  <h3 className="font-cormorant text-2xl md:text-3xl text-white">
                     {pkg.title}
                   </h3>
-                  <p className="text-3xl md:text-4xl font-cormorant font-medium text-[#b8a862]">
-                    {pkg.price}
-                  </p>
                 </div>
 
                 <div className="border-t border-[#b8a862]/20 mb-6" />
