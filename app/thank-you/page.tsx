@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ImageCarousel } from "@/components/image-carousel"
+import { CalendarEmbed } from "@/components/calendar-embed"
 import Link from "next/link"
 import type { Metadata } from "next"
 
@@ -19,8 +20,8 @@ export default function ThankYouPage() {
       <Header />
 
       {/* Thank You Section */}
-      <section className="min-h-[70vh] flex items-center justify-center px-6 pt-32 pb-24">
-        <div className="max-w-2xl text-center">
+      <section className="flex items-center justify-center px-6 pt-32 pb-24">
+        <div className="w-full max-w-6xl text-center">
           <div className="mb-8">
             <span className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#b8a862]/20 text-[#b8a862]">
               <svg
@@ -45,8 +46,13 @@ export default function ThankYouPage() {
           </p>
 
           <p className="font-sans text-base md:text-lg text-white/70 leading-relaxed mb-8">
-            I will be in contact with you ASAP.
+            I will be in contact with you ASAP. Or book a call below:
           </p>
+
+          {/* Calendar Embed */}
+          <div className="w-full max-w-6xl mx-auto mb-12">
+            <CalendarEmbed />
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
