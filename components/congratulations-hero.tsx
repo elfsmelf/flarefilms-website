@@ -64,6 +64,22 @@ export const CongratulationsHero = () => {
               celebrations. As a wedding videographer, I adore capturing the raw, unguarded moments of pure love.
             </p>
           </div>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-10 justify-center lg:justify-start">
+            <a
+              href="#pricing"
+              className="inline-block border border-[#b8a862] bg-[#b8a862] px-8 py-4 text-sm font-sans uppercase tracking-wide text-[#24221d] hover:bg-[#d4c9a0] hover:border-[#d4c9a0] transition-colors duration-300 text-center"
+            >
+              See Full Pricing
+            </a>
+            <a
+              href="#book"
+              className="inline-block border border-[#b8a862] px-8 py-4 text-sm font-sans uppercase tracking-wide text-[#b8a862] hover:bg-[#b8a862] hover:text-[#24221d] transition-colors duration-300 text-center"
+            >
+              Book A Meeting
+            </a>
+          </div>
         </div>
       </div>
     </section>

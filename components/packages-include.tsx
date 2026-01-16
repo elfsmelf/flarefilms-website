@@ -32,7 +32,11 @@ const features = [
   },
 ]
 
-export function PackagesInclude() {
+type PackagesIncludeProps = {
+  hideCheckAvailability?: boolean
+}
+
+export function PackagesInclude({ hideCheckAvailability = false }: PackagesIncludeProps) {
   return (
     <section className="bg-[#4a5347] py-20 md:py-28">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -66,14 +70,16 @@ export function PackagesInclude() {
         </div>
 
         {/* Check Availability Button */}
-        <div className="text-center mt-16">
-          <a
-            href="/pricing#contact"
-            className="inline-block border border-[#d4c9a0] px-12 py-4 text-sm font-serif uppercase tracking-wide text-[#d4c9a0] hover:bg-[#d4c9a0] hover:text-[#4a5347] transition-colors duration-300"
-          >
-            Check availability
-          </a>
-        </div>
+        {!hideCheckAvailability && (
+          <div className="text-center mt-16">
+            <a
+              href="/pricing#contact"
+              className="inline-block border border-[#d4c9a0] px-12 py-4 text-sm font-serif uppercase tracking-wide text-[#d4c9a0] hover:bg-[#d4c9a0] hover:text-[#4a5347] transition-colors duration-300"
+            >
+              Check availability
+            </a>
+          </div>
+        )}
       </div>
     </section>
   )

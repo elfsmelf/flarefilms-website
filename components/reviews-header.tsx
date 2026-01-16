@@ -5,7 +5,7 @@ type ReviewsHeaderProps = {
 }
 
 export const ReviewsHeader = ({
-  title = "Over 120 Weddings Filmed Across South East Queensland",
+  title = "Reviews from Our Happy Couples",
   subtitle = "Here's what couples are saying...",
   className,
 }: ReviewsHeaderProps) => {

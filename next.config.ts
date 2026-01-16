@@ -67,11 +67,6 @@ const nextConfig: NextConfig = {
       },
       // === Pricing pages → /pricing ===
       {
-        source: '/pricing-guide',
-        destination: '/pricing',
-        permanent: true,
-      },
-      {
         source: '/investment',
         destination: '/pricing',
         permanent: true,

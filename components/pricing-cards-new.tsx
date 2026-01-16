@@ -69,7 +69,11 @@ const packages: PricingPackage[] = [
   },
 ]
 
-export const PricingCards = () => {
+type PricingCardsProps = {
+  hideCheckAvailability?: boolean
+}
+
+export const PricingCards = ({ hideCheckAvailability = false }: PricingCardsProps) => {
   const [hasMounted, setHasMounted] = useState(false)
 
   useEffect(() => {
@@ -153,16 +157,18 @@ export const PricingCards = () => {
                 </div>
 
                 {/* CTA Button */}
-                <a
-                  href="/pricing#contact"
-                  className={`inline-block text-center border px-8 py-3 text-sm font-serif uppercase tracking-wide transition-colors duration-300 ${
-                    pkg.popular
-                      ? "bg-[#b8a862] border-[#b8a862] text-[#24221d] hover:bg-[#d4c9a0] hover:border-[#d4c9a0]"
-                      : "border-[#b8a862] text-[#b8a862] hover:bg-[#b8a862] hover:text-[#24221d]"
-                  }`}
-                >
-                  Check Availability
-                </a>
+                {!hideCheckAvailability && (
+                  <a
+                    href="/pricing#contact"
+                    className={`inline-block text-center border px-8 py-3 text-sm font-serif uppercase tracking-wide transition-colors duration-300 ${
+                      pkg.popular
+                        ? "bg-[#b8a862] border-[#b8a862] text-[#24221d] hover:bg-[#d4c9a0] hover:border-[#d4c9a0]"
+                        : "border-[#b8a862] text-[#b8a862] hover:bg-[#b8a862] hover:text-[#24221d]"
+                    }`}
+                  >
+                    Check Availability
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}
