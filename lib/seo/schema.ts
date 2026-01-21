@@ -21,9 +21,27 @@ export function generateOrganizationSchema() {
   }
 }
 
+// Extract YouTube video ID from various URL formats
+function extractYouTubeVideoId(url: string): string | null {
+  // Handle embed URLs: https://www.youtube.com/embed/VIDEO_ID
+  const embedMatch = url.match(/youtube\.com\/embed\/([^?&]+)/)
+  if (embedMatch) return embedMatch[1]
+
+  // Handle watch URLs: https://www.youtube.com/watch?v=VIDEO_ID
+  const watchMatch = url.match(/youtube\.com\/watch\?v=([^&]+)/)
+  if (watchMatch) return watchMatch[1]
+
+  // Handle short URLs: https://youtu.be/VIDEO_ID
+  const shortMatch = url.match(/youtu\.be\/([^?&]+)/)
+  if (shortMatch) return shortMatch[1]
+
+  return null
+}
+
 // VideoObject schema for films
 export function generateVideoSchema(film: {
   title: string
+  slug: string
   tagline?: string | null
   headerImage: string | null
   createdAt?: Date
@@ -34,21 +52,36 @@ export function generateVideoSchema(film: {
   } | null
 }) {
   const hasVenue = film.venue?.venueTitle
+  const videoId = film.videoUrl ? extractYouTubeVideoId(film.videoUrl) : null
+
+  // Generate proper URLs for YouTube videos
+  const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : undefined
+  const contentUrl = videoId ? `https://www.youtube.com/watch?v=${videoId}` : undefined
+  const youtubeThumbnail = videoId ? `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg` : undefined
 
   return {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
+    '@id': `https://flarefilms.com.au/films/${film.slug}#video`,
     name: hasVenue
       ? `${film.title} | ${film.venue!.venueTitle} Wedding Film`
       : `${film.title} - Wedding Film`,
     description: hasVenue
       ? `${film.title}'s ${film.venue!.venueTitle} wedding film. ${film.tagline || ''} By Flare Films.`.trim()
       : film.tagline || `${film.title} wedding film by Flare Films`,
-    thumbnailUrl: film.headerImage || undefined,
+    thumbnailUrl: youtubeThumbnail || film.headerImage || undefined,
     uploadDate: film.createdAt?.toISOString() || new Date().toISOString(),
-    contentUrl: film.videoUrl || undefined,
-    embedUrl: film.videoUrl || undefined,
-    duration: 'PT10M', // Adjust based on actual video length if available
+    contentUrl,
+    embedUrl,
+    duration: 'PT5M',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Flare Films',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://flarefilms.com.au/logo.png',
+      },
+    },
     // SEO: Include venue location in schema
     ...(hasVenue && {
       contentLocation: {

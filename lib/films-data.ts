@@ -14,6 +14,7 @@ export interface Film {
   videoUrl?: string
   trailerUrl?: string
   storyContent: string
+  createdAt: Date
   vendors: {
     role: string
     name: string
@@ -99,6 +100,7 @@ export async function getFilmBySlug(slug: string): Promise<Film | null> {
     videoUrl: film.videoUrl ?? undefined,
     trailerUrl: film.trailerUrl ?? undefined,
     storyContent: film.storyContent,
+    createdAt: film.createdAt,
     vendors: film.vendors.map((v) => ({
       role: v.role,
       name: v.name,
@@ -146,6 +148,7 @@ export async function getAllFilms(): Promise<Film[]> {
     videoUrl: film.videoUrl ?? undefined,
     trailerUrl: film.trailerUrl ?? undefined,
     storyContent: film.storyContent,
+    createdAt: film.createdAt,
     vendors: film.vendors.map((v) => ({
       role: v.role,
       name: v.name,
@@ -197,6 +200,7 @@ export async function getRecommendedFilms(
       videoUrl: film.videoUrl ?? undefined,
       trailerUrl: film.trailerUrl ?? undefined,
       storyContent: film.storyContent,
+      createdAt: film.createdAt,
       vendors: film.vendors.map((v) => ({
         role: v.role,
         name: v.name,
