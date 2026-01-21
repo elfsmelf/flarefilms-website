@@ -6,6 +6,7 @@ const locations = [
   { name: "Gold Coast", href: "/gold-coast-wedding-videographer" },
   { name: "Moreton Bay", href: "/moreton-bay-wedding-videographer" },
   { name: "Noosa", href: "/noosa-wedding-videographer" },
+  { name: "St George", href: "/st-george-wedding-videographer" },
   { name: "Sunshine Coast", href: "/sunshine-coast-wedding-videographer" },
   { name: "Toowoomba", href: "/toowoomba-wedding-videographer" },
 ]

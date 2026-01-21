@@ -1,4 +1,4 @@
-import { getFilmBySlug, getRecommendedFilms, getAllFilms } from "@/lib/films-data"
+import { getFilmBySlug, getRecommendedFilms, getAllFilms, getFilmSlugByOldSlug } from "@/lib/films-data"
 import { FilmClient } from "./film-client"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
@@ -8,6 +8,7 @@ import type { Metadata } from "next"
 import { generateOGMetadata, generateTwitterMetadata } from "@/lib/seo/metadata"
 import { generateVideoSchema, generateBreadcrumbSchema } from "@/lib/seo/schema"
 import { JsonLd } from "@/components/seo/JsonLd"
+import { permanentRedirect } from "next/navigation"
 
 // Generate static params for all published films
 export async function generateStaticParams() {
@@ -70,6 +71,12 @@ export default async function FilmPage({ params }: { params: Promise<{ slug: str
   const film = await getFilmBySlug(slug)
 
   if (!film) {
+    // Check if this is an old slug that should redirect
+    const currentSlug = await getFilmSlugByOldSlug(slug)
+    if (currentSlug) {
+      permanentRedirect(`/films/${currentSlug}`)
+    }
+
     return (
       <main className="min-h-screen bg-white">
         <Header />

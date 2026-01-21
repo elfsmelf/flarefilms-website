@@ -6,6 +6,7 @@ import { createId } from '@paralleldrive/cuid2'
 export const films = pgTable('films', {
   id: text('id').$defaultFn(() => createId()).primaryKey(),
   slug: text('slug').notNull().unique(),
+  oldSlugs: text('old_slugs'), // JSON array of previous slugs for automatic redirects
   title: text('title').notNull(),
   subtitle: text('subtitle').notNull(),
   tagline: text('tagline').notNull(),

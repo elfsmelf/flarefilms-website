@@ -2,7 +2,7 @@ import 'server-only'
 
 import { db } from './db'
 import { films } from './db/schema'
-import { eq } from 'drizzle-orm'
+import { eq, sql } from 'drizzle-orm'
 
 export interface Film {
   slug: string
@@ -34,6 +34,28 @@ export interface Film {
       alt: string
     }[]
   }
+}
+
+/**
+ * Find a film's current slug by checking old slugs.
+ * Returns the current slug if found, null otherwise.
+ * Used for redirecting old URLs to new ones.
+ */
+export async function getFilmSlugByOldSlug(oldSlug: string): Promise<string | null> {
+  // Search for films where old_slugs JSON array contains the given slug
+  const film = await db.query.films.findFirst({
+    where: sql`${films.oldSlugs}::jsonb ? ${oldSlug}`,
+    columns: {
+      slug: true,
+      published: true,
+    },
+  })
+
+  if (!film || !film.published) {
+    return null
+  }
+
+  return film.slug
 }
 
 export async function getFilmBySlug(slug: string): Promise<Film | null> {

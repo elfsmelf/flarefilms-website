@@ -1,5 +1,7 @@
 'use server'
 
+import { marked } from 'marked'
+
 export interface VenueAutofillData {
   venueTitle: string
   shortDescription?: string
@@ -73,25 +75,24 @@ export async function generateVenueBlogArticle(venueName: string): Promise<{
   error?: string
 }> {
   try {
-    const prompt = `Write a comprehensive, SEO-optimized blog article about "${venueName}" as a wedding venue in Queensland, Australia.
+    const prompt = `Research "${venueName}" wedding venue in Queensland, Australia and write a detailed informational guide about it.
 
-The article should be formatted in HTML and include:
-1. An engaging introduction about the venue
-2. Key features and amenities
-3. Ceremony and reception spaces
-4. Catering options
-5. Accommodation (if available)
-6. What makes this venue special for weddings
-7. Tips for couples considering this venue
+Structure the information covering:
+1. Overview and history of the venue
+2. Key features and amenities available
+3. Ceremony and reception spaces (capacity, layout, settings)
+4. Catering arrangements and options
+5. On-site accommodation (if available)
+6. Unique characteristics of the venue
+7. Practical considerations for couples (parking, accessibility, etc.)
 
-Format the response as valid HTML with:
-- Use <h2> for main section headings
-- Use <p> for paragraphs
-- Use <ul> and <li> for lists where appropriate
-- Use <strong> for emphasis on key points
+Use Markdown formatting with:
+- ## for section headings
+- Regular paragraphs
+- Bullet lists where appropriate
+- **bold** for key details
 
-Do NOT include <html>, <head>, <body> tags - just the article content.
-Make the content engaging, informative, and helpful for couples planning their wedding.`
+Focus on factual, helpful information that would assist couples researching this venue.`
 
     const content = await callPerplexity(prompt)
 
@@ -102,15 +103,20 @@ Make the content engaging, informative, and helpful for couples planning their w
       }
     }
 
-    // Clean up the response - remove any markdown code blocks if present
+    // Clean up the response - remove any code blocks and citation references
     let cleanContent = content
-      .replace(/```html\n?/g, '')
+      .replace(/```markdown\n?/g, '')
       .replace(/```\n?/g, '')
+      .replace(/\[\d+\]/g, '') // Remove citation references like [1], [2], etc.
+      .replace(/---+/g, '') // Remove horizontal rules
       .trim()
+
+    // Convert Markdown to HTML
+    const htmlContent = await marked(cleanContent)
 
     return {
       success: true,
-      data: cleanContent,
+      data: htmlContent,
     }
   } catch (error) {
     console.error('Error generating venue blog article:', error)

@@ -217,11 +217,25 @@ export async function updateFilm(
       }
     }
 
+    // If slug is changing, save the old slug for redirects
+    let updatedOldSlugs = existingFilm.oldSlugs
+    if (filmData.slug !== existingFilm.slug) {
+      const currentOldSlugs: string[] = existingFilm.oldSlugs
+        ? JSON.parse(existingFilm.oldSlugs)
+        : []
+      // Add the old slug if it's not already in the list
+      if (!currentOldSlugs.includes(existingFilm.slug)) {
+        currentOldSlugs.push(existingFilm.slug)
+      }
+      updatedOldSlugs = JSON.stringify(currentOldSlugs)
+    }
+
     // Update film
     await db
       .update(films)
       .set({
         ...filmData,
+        oldSlugs: updatedOldSlugs,
         updatedAt: new Date(),
       })
       .where(eq(films.id, id))
