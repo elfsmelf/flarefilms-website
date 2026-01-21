@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import { Header } from "@/components/header"
 import { CongratulationsHero } from "@/components/congratulations-hero"
 import { PackagesInclude } from "@/components/packages-include"
@@ -9,6 +10,13 @@ import { FAQSection } from "@/components/faq-section"
 import { FilmsListWithFilter } from "@/components/films-list-with-filter"
 import { getAllFilms } from "@/lib/films-data"
 import { GoogleReviewsSection, LimitedBonusSection, BookCallSection } from "./pricing-guide-content"
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+}
 
 export default async function PricingGuidePage() {
   const allFilms = await getAllFilms()
