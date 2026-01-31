@@ -32,7 +32,7 @@ export default async function PricingGuidePage() {
       <section id="pricing" className="w-full bg-[#24221d] pt-20 pb-8">
         <div className="max-w-[1200px] mx-auto px-6 text-center">
           <h2 className="font-cormorant text-3xl md:text-4xl lg:text-5xl text-white uppercase tracking-wide">
-            Packages Starting at $2,800
+            Packages Starting at $2,500
           </h2>
         </div>
       </section>

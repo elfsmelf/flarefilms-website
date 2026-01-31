@@ -19,7 +19,7 @@ const packages: PricingPackage[] = [
   {
     id: "simply-perfect",
     title: "Simply Perfect",
-    price: "$2,800",
+    price: "$2,500",
     popular: false,
     image: "https://assets.guestsnapper.com/wedding-gallery-media/paula.webp",
     features: [
@@ -35,11 +35,11 @@ const packages: PricingPackage[] = [
   {
     id: "all-you-could-want",
     title: "All You Could Want",
-    price: "$3,500",
+    price: "$2,800",
     popular: true,
     image: "https://assets.guestsnapper.com/wedding-gallery-media/wedding%20couple-3.webp",
     features: [
-      "9 Hours Coverage",
+      "8 Hours Coverage",
       "7-9 Minute Highlight Film in 4K",
       "60-Second Sneak Peek within 3 Days",
       "4-Week Delivery Guaranteed",
@@ -51,7 +51,7 @@ const packages: PricingPackage[] = [
   {
     id: "ultimate",
     title: "The Ultimate Experience",
-    price: "$4,000",
+    price: "$3,500",
     popular: false,
     image: "https://assets.guestsnapper.com/wedding-gallery-media/nicole%20and%20josh%20(1).webp",
     features: [
@@ -80,7 +80,7 @@ export function PricingSection() {
           className="text-center mb-16"
         >
           <h2 className="font-cormorant text-3xl md:text-4xl lg:text-5xl text-white uppercase tracking-wide">
-            Packages Starting at $2,800
+            Packages Starting at $2,500
           </h2>
         </motion.div>
 

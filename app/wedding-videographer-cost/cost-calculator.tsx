@@ -148,7 +148,7 @@ export function CostCalculator() {
 
             <div className="border-t border-[#5a6357] pt-6 mt-6">
               <p className="font-serif text-[#e8e3d8] mb-4">
-                Want to see our actual pricing? Flare Films offers all-day coverage starting from $2,800.
+                Want to see our actual pricing? Flare Films offers all-day coverage starting from $2,500.
               </p>
               <a
                 href="/#packages"

@@ -75,7 +75,7 @@ export function PromotionHero() {
             {[
               "4-week delivery guaranteed",
               "120+ weddings filmed across SEQ",
-              "Starting at $2,800",
+              "Starting at $2,500",
             ].map((item, index) => (
               <div key={index} className="flex items-center gap-3">
                 <Check className="w-6 h-6 text-[#b8a862]" strokeWidth={3} />

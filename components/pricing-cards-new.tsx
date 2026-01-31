@@ -21,7 +21,7 @@ const packages: PricingPackage[] = [
     title: "Simply Perfect",
     subtitle: "",
     description: "",
-    price: "$2,800",
+    price: "$2,500",
     popular: false,
     image: "https://assets.guestsnapper.com/wedding-gallery-media/paula.webp",
     features: [
@@ -37,12 +37,12 @@ const packages: PricingPackage[] = [
     title: "All You Could Want",
     subtitle: "Most Popular",
     description: "",
-    price: "$3,500",
+    price: "$2,800",
     popular: true,
     image: "https://assets.guestsnapper.com/wedding-gallery-media/wedding%20couple-3.webp",
     features: [
       "1 Minute Sneak Peek Trailer within 7 days",
-      "9 Hours Coverage",
+      "8 Hours Coverage",
       "7-9 MIN Highlight Film in 4K",
       "Full Ceremony & Speeches Film",
       "Drone Footage",
@@ -54,7 +54,7 @@ const packages: PricingPackage[] = [
     title: "The Ultimate Experience",
     subtitle: "",
     description: "",
-    price: "$4,000",
+    price: "$3,500",
     popular: false,
     image: "https://assets.guestsnapper.com/wedding-gallery-media/nicole%20and%20josh%20(1).webp",
     features: [

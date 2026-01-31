@@ -5,23 +5,23 @@ const PRICING_TIERS = [
   {
     id: 1,
     title: "7 Hours",
-    price: "$2,800",
+    price: "$2,500",
     image: "https://assets.guestsnapper.com/wedding-gallery-media/paula.webp",
     width: 1500,
     height: 2250, // estimated aspect based on common photography ratios
   },
   {
     id: 2,
-    title: "9 Hours",
-    price: "$3,500",
+    title: "8 Hours",
+    price: "$2,800",
     image: "https://assets.guestsnapper.com/wedding-gallery-media/wedding%20couple-3.webp",
     width: 1500,
     height: 2250,
   },
   {
     id: 3,
-    title: "All Day Coverage",
-    price: "$4,000",
+    title: "10 Hours",
+    price: "$3,500",
     image: "https://assets.guestsnapper.com/wedding-gallery-media/nicole%20and%20josh%20(1).webp",
     width: 1500,
     height: 2250,
